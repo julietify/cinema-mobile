@@ -1,10 +1,13 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { Provider } from 'react-redux'
+
+import { RootStackScreen } from './navigation/root'
+import store from './redux/store'
 
 export const App = () => {
   return (
-    <View>
-      <Text>Hello</Text>
-    </View>
+    <Provider store={store}>
+      <RootStackScreen />
+    </Provider>
   )
 }
