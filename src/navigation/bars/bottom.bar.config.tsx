@@ -23,3 +23,7 @@ export const renderBarIcons = (value: string, focused: boolean) => {
       )
   }
 }
+
+export const options = {
+  showLabel: false
+}
