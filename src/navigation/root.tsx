@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
 import { Text, View } from 'react-native'
-import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import { BottomTabBar } from './bars/bottom.bar'
@@ -25,23 +24,21 @@ export const RootStackScreen: FC = () => {
   }
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        {
-          isAuthenticated
-          ? <Stack.Screen 
-              name='root' 
-              component={BottomTabBar} 
-            />
-          : <Stack.Screen 
-              name='signin' 
-              component={Auth} 
-              options={{
-                headerShown: false
-              }}
-            />
-        }
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator>
+      {
+        isAuthenticated
+        ? <Stack.Screen 
+            name='root' 
+            component={BottomTabBar} 
+          />
+        : <Stack.Screen 
+            name='signin' 
+            component={Auth} 
+            options={{
+              headerShown: false
+            }}
+          />
+      }
+    </Stack.Navigator>
   )
 }
