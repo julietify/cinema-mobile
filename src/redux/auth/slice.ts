@@ -6,7 +6,11 @@ import { login, signInGoolge, logout } from './thunks'
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    goAsGuest(state) {
+      state.isGuest = true
+    }
+  },
   extraReducers: builder => {
     builder.addCase(login.fulfilled, (state, action) => {
       state.checking = false
@@ -24,4 +28,5 @@ const authSlice = createSlice({
   }
 })
 
+export const { goAsGuest } = authSlice.actions
 export default authSlice.reducer
