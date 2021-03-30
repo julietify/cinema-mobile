@@ -12,7 +12,7 @@ const Stack = createStackNavigator()
 
 export const RootStackScreen: FC = () => {
 
-  const { checking, isAuthenticated } = useAppSelector(state => state.auth)
+  const { checking, isAuthenticated, isGuest } = useAppSelector(state => state.auth)
   const dispatch = useAppDispatch()
 
   if(checking) {
@@ -26,7 +26,7 @@ export const RootStackScreen: FC = () => {
   return (
     <Stack.Navigator>
       {
-        isAuthenticated
+        isAuthenticated || isGuest
         ? <Stack.Screen 
             name='root' 
             component={BottomTabBar} 
