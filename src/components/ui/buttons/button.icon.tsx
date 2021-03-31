@@ -7,6 +7,7 @@ import { IButton } from '../../../interfaces/IButton'
 interface IButtonIcon extends IButton {
   iconName: string
   iconColor?: string
+  w?: number
 }
 
 export const ButtonIcon: FC<IButtonIcon> = ({
@@ -14,11 +15,12 @@ export const ButtonIcon: FC<IButtonIcon> = ({
   iconColor,
   text,
   bgColor,
+  w,
   onPress
 }) => {
   const window = useWindowDimensions()
 
-  const width = window.width - 50
+  const defaultWidth = window.width - 50
 
   return (
     <Pressable 
@@ -27,12 +29,12 @@ export const ButtonIcon: FC<IButtonIcon> = ({
       <View 
         style={{ 
           ...styles.container, 
-          width, 
+          width: w || defaultWidth, 
           backgroundColor: bgColor
         }}
       >
         <Icon name={iconName} size={25} color={iconColor || '#fff'} />
-        <Text style={styles.text}>{text}</Text>
+        { text && <Text style={styles.text}>{text}</Text> }
       </View>
     </Pressable>
   )

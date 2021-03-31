@@ -1,5 +1,5 @@
 export interface IButton {
   onPress: () => void
-  text: string | number
+  text?: string | number
   bgColor?: string
 }
