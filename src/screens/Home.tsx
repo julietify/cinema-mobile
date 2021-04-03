@@ -5,7 +5,7 @@ export const Home: FC = () => {
   return (
     <View>
       <Text>
-        Home screen
+        Home screen test
       </Text>
     </View>
   )
