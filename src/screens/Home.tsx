@@ -1,11 +1,12 @@
 import React, { FC } from "react"
-import { Text, View } from "react-native"
+import { Text, View, ScrollView } from "react-native"
 import { CardFilm } from "../components/common/card.film"
-
+import { TestComponent } from "../components/common/text.component"
 export const Home: FC = () => {  
   return (
-    <View>
+    <ScrollView>
+      <TestComponent/>
         <CardFilm/>
-    </View>
+    </ScrollView>
   )
 }
