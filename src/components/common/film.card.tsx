@@ -23,7 +23,7 @@ export const FilmCard = memo<IFilmCard>(({
   return (
     <TouchableOpacity activeOpacity={.9} onPress={onPress}>
       <View style={{ ...styles.container, width }}>
-        <View style={{ elevation: 25 }}>
+        <View style={{ elevation: 25, borderRadius: 15 }}>
           <Image 
             resizeMode='cover'
             source={{ uri: picture }}
