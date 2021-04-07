@@ -4,5 +4,8 @@ export const screenConfig = {
   profile: {
     header: () => null,
     cardStyleInterpolator: CardStyleInterpolators.forScaleFromCenterAndroid
+  },
+  film: {
+    header: () => null
   }
 }

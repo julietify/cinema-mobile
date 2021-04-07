@@ -5,9 +5,11 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { BottomTabBar } from './bars/bottom.bar'
 import { Auth } from '../screens/auth/Auth'
 import { ProfileStackScreen } from './stacks/profile.stack'
+import { FilmStackScreen } from './stacks/film.stack'
 
 import { login } from '../redux/auth/thunks'
 import { useAppDispatch, useAppSelector } from '../hooks/useRedux'
+
 import { authHeaderConfig, rootHeaderConfig } from './config/header.config'
 import { screenConfig } from './config/screen.config'
 
@@ -45,6 +47,11 @@ export const RootStackScreen: FC = () => {
         name='RootProfile'
         component={ProfileStackScreen}
         options={screenConfig.profile}
+      />
+      <Stack.Screen 
+        name='RootFilm'
+        component={FilmStackScreen}
+        options={screenConfig.film}
       />
     </Stack.Navigator>
   )
