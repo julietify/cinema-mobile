@@ -6,6 +6,7 @@ export const screenConfig = {
     cardStyleInterpolator: CardStyleInterpolators.forScaleFromCenterAndroid
   },
   film: {
-    header: () => null
+    header: () => null,
+    CardStyleInterpolators: CardStyleInterpolators.forNoAnimation
   }
 }

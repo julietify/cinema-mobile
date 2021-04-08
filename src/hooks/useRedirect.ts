@@ -6,7 +6,7 @@ export const useRedirect = () => {
 
   const redirectoToFilmScreen = useCallback(filmId => {
     navigation.navigate('RootFilm', {
-      screen: 'FilmRoot',
+      screen: 'RootFilm',
       params: { filmId }
     })
   }, [])
