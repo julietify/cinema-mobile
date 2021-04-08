@@ -1,6 +1,9 @@
 import React, { FC } from "react"
 import { View, FlatList } from "react-native"
+
 import { FilmCard } from "../components/common/film.card"
+import { FilterContainer } from "../components/film/filter/filter.container"
+
 import { useRedirect } from "../hooks/useRedirect"
 
 export const Home: FC = () => {  
@@ -9,6 +12,7 @@ export const Home: FC = () => {
 
   return (
     <View style={{ backgroundColor: '', flex: 1, alignItems: 'center' }}>
+      <FilterContainer />
       <FlatList 
         data={films}
         renderItem={({ item }) => 
@@ -53,6 +57,6 @@ const films = [
   {
     id: '5',
     name: 'Bliss',
-    poster: 'https://lh3.googleusercontent.com/proxy/N10XW9FH_7yTI193KjqvdxQQXlSqOUqasLUrHy7rg0gPuXex0czRIVs6AAV_4jdtgj6h3PJ_Hh5XgGBLvg0k0NDHExLzMjia4hEE9NVThGM'
+    poster: 'https://i2.wp.com/media-news.com.ua/wp-content/uploads/2021/01/Bliss-poster.jpg?ssl=1'
   }
 ]
