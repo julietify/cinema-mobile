@@ -4,11 +4,11 @@ import { palette } from './palette'
 export const darkTheme: Theme = {
   dark: true,
   colors: {
-    primary: '#3d5afe',
+    primary: palette.theme.light,
     background: palette.theme.dark,
     card: palette.theme.card,
     text: palette.theme.light,
-    border: palette.theme.card,
+    border: palette.theme.light,
     notification: 'blue'
   }
 }
