@@ -1,5 +1,6 @@
 import React, { FC } from "react"
 import { View, Text } from "react-native"
+import { ButtonBack } from "../../components/ui/buttons/button.back"
 
 import type { FilmRouteProp } from '../../navigation/stacks/film.stack'
 
@@ -15,8 +16,8 @@ export const Film: FC<IFilmProps> = ({
 
   return (
     <View>
-      <Text>Film screen</Text>
-      <Text>Id {params.filmId}</Text>
+      <ButtonBack />
+      <Text>id {params.filmId}</Text>
     </View>
   )
 }
