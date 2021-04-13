@@ -3,21 +3,15 @@ import { View, Image, StyleSheet, useWindowDimensions, TouchableOpacity } from '
 
 interface IFilmCard {
   picture: string
-  id: string
-  name: string
-  genre: string
-  time: string
-  story: string
-  onPress?: (id: string, picture: string, name: string, genre: string, time: string, story:string) => void
+  id?: string
+  name?: string
+  onPress?: (id: string) => void
 }
 
 export const FilmCard = memo<IFilmCard>(({
   picture,
   name,
-  genre,
   id,
-  time,
-  story,
   onPress
 }) => {
 
@@ -29,7 +23,7 @@ export const FilmCard = memo<IFilmCard>(({
   return (
     <View style={{ ...styles.container, width }}>
       <View style={{ elevation: 25, borderRadius: 15 }}>
-        <TouchableOpacity activeOpacity={.9} onPress={() => onPress(id,picture,name,genre,time,story)}>
+        <TouchableOpacity activeOpacity={.9} onPress={() => onPress(id)}>
           <Image 
             resizeMode='cover'
             source={{ uri: picture }}

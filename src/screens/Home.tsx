@@ -22,9 +22,6 @@ export const Home: FC = () => {
             name={item.name} 
             id={item.id} 
             picture={item.poster}
-            genre={item.genre} 
-            time={item.time} 
-            story={item.story}
           />
         }
         keyExtractor={(_, index) => index.toString()}
