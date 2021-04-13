@@ -6,7 +6,12 @@ import { Film } from '../../screens/film/Film'
 
 type FilmStackParams = {
   RootFilm: {
-    filmId: string
+    filmId: string,
+    filmPicture: string,
+    filmName: string,
+    filmTime: string,
+    filmGenre: string,
+    filmStory: string
   }
 }
 

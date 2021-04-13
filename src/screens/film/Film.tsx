@@ -1,6 +1,7 @@
 import React, { FC } from "react"
-import { View, Text } from "react-native"
-import { ButtonBack } from "../../components/ui/buttons/button.back"
+import { View, Text, ScrollView, StyleSheet } from "react-native"
+
+import { FilmContainer } from '../../components/film/film.container'
 
 import type { FilmRouteProp } from '../../navigation/stacks/film.stack'
 
@@ -13,11 +14,20 @@ export const Film: FC<IFilmProps> = ({
 }) => {
 
   const { params } = route
-
   return (
-    <View>
-      <ButtonBack />
-      <Text>id {params.filmId}</Text>
+    <View style={styles.container}>
+      <FilmContainer 
+        id={params.filmId} 
+        picture={params.filmPicture} 
+        name={params.filmName} 
+        time={params.filmTime} 
+        genre={params.filmGenre}
+        story={params.filmStory} />
     </View>
   )
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+})
