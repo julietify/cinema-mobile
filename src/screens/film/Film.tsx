@@ -1,5 +1,5 @@
-import React, { FC, useState } from "react"
-import { View, StyleSheet, ScrollView } from "react-native"
+import React, { FC, useState, useEffect } from "react"
+import { View, StyleSheet, ScrollView, Text } from "react-native"
 
 import { FilmCard } from "../../components/common/film.card"
 import { Info } from "../../components/film/views/info.view"
@@ -16,6 +16,9 @@ import type { FilmRouteProp } from '../../navigation/stacks/film.stack'
 import { palette } from "../../theme/palette"
 import { films } from '../../utils/films'
 
+import { omdbApi } from '../../api/omdb.api'
+import { IOmdbResponse } from '../../interfaces/IOmdb'
+
 interface IFilmProps {
   route: FilmRouteProp
 }
@@ -26,48 +29,71 @@ export const Film: FC<IFilmProps> = ({
 
   const { filmId } = route.params
 
-  const [film, setState] = useState(() => {
-    return films.filter(film => film.id === filmId)[0]
-  })
+  const [filmOmdb, setFilmOmdb] = useState<IOmdbResponse>({} as IOmdbResponse)
 
-  console.log(film)
+  useEffect(() => {
+    let isActive = true
+
+    const fetchFilm = async () => {
+      try {
+        const res = await omdbApi().film(filmId)
+        
+        if (isActive) {
+          setFilmOmdb(res.data)
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    fetchFilm()
+    
+    return () => {
+      isActive = false
+    }
+
+  }, [filmId])
+  
+  console.log(filmOmdb)
+
+  const [film] = useState(() => films.filter(film => film.id === filmId)[0])
 
   return (
     <>
-    <View style={styles.container}>
-      <Wrapper uri={film.poster}>
-        <ScrollView>
-          <ButtonBack />
-          <FilmCard 
-            picture={film.poster} 
-            onPress={() => {}} 
-          />
-          <View style={styles.nameContainer}>
-            <Title>{film.name}</Title>
-          </View>
-          <View style={styles.trailerContainer}>
-            <ButtonIcon 
-              iconName='play'
-              text='Watch trailer'
-              onPress={() => {}} 
-              {...trailerButton}
+      <View style={styles.container}>
+        <Wrapper uri={film.poster}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <ButtonBack />
+            <FilmCard
+              picture={film.poster}
+              onPress={() => { }}
             />
-            <Info time={film.time} genre={film.genre} />
+            <View style={styles.nameContainer}>
+              <Title>{filmOmdb.Title}</Title>
+            </View>
+            <View style={styles.trailerContainer}>
+              <ButtonIcon
+                iconName='play'
+                text='Watch trailer'
+                onPress={() => { }}
+                {...trailerButton}
+              />
+              <Info time={filmOmdb.Runtime} genre={filmOmdb.Genre} />
+            </View>
+            <ViewWrapper title='Storyline'>
+              <Body2>{filmOmdb.Plot}</Body2>
+            </ViewWrapper>
+          </ScrollView>
+          <View style={styles.bookContainer}>
+            <ButtonIcon
+              text='Book now'
+              iconName='ticket-confirmation'
+              onPress={() => { }}
+              {...bookButton}
+            />
           </View>
-          <ViewWrapper title='Storyline'>
-            <Body2>{film.story}</Body2>
-          </ViewWrapper>
-        </ScrollView>
-        <View style={styles.bookContainer}>
-          <ButtonIcon 
-            text='Book now' 
-            iconName='ticket-confirmation'
-            onPress={() => {}} 
-            {...bookButton}
-          />
-        </View>
-      </Wrapper>
-    </View>
+        </Wrapper>
+      </View>
     </>
   )
 }
@@ -82,11 +108,11 @@ const styles = StyleSheet.create({
   trailerContainer: {
     alignItems: 'center'
   },
-  bookContainer:{
-    bottom: 0, 
-    position: 'relative', 
-    width: '100%', 
-    alignItems: 'center', 
+  bookContainer: {
+    bottom: 0,
+    position: 'relative',
+    width: '100%',
+    alignItems: 'center',
     backgroundColor: 'transparent'
   }
 })
@@ -101,5 +127,5 @@ const trailerButton = {
 const bookButton = {
   brRadius: 15,
   p: 13,
-  bgColor: palette.main.lightblue 
+  bgColor: palette.main.lightblue
 }
