@@ -29,7 +29,7 @@ export const Film: FC<IFilmProps> = ({
 
   const { filmId } = route.params
 
-  const [filmOmdb, setFilmOmdb] = useState({} as IOmdbResponse)
+  const [filmOmdb, setFilmOmdb] = useState<IOmdbResponse>({} as IOmdbResponse)
 
   useEffect(() => {
     let isActive = true
@@ -54,9 +54,6 @@ export const Film: FC<IFilmProps> = ({
   const [film, setState] = useState(() => {
     return films.filter(film => film.id === filmId)[0]
   })
-
-  console.log(film)
-
   return (
     <>
       <View style={styles.container}>
