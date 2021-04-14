@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from "react"
-import { View, StyleSheet, ScrollView } from "react-native"
+import { View, StyleSheet, ScrollView, Text } from "react-native"
 
 import { FilmCard } from "../../components/common/film.card"
 import { Info } from "../../components/film/views/info.view"
@@ -29,13 +29,15 @@ export const Film: FC<IFilmProps> = ({
 
   const { filmId } = route.params
 
-  const [filmOmdb, setFilmOmdb] = useState({} as IOmdbResponse)
+  const [filmOmdb, setFilmOmdb] = useState<IOmdbResponse>({} as IOmdbResponse)
 
   useEffect(() => {
     let isActive = true
-    const fetchRating = async () => {
+
+    const fetchFilm = async () => {
       try {
         const res = await omdbApi().film(filmId)
+        
         if (isActive) {
           setFilmOmdb(res.data)
         }
@@ -43,25 +45,24 @@ export const Film: FC<IFilmProps> = ({
         console.log(err)
       }
     }
-    fetchRating()
+
+    fetchFilm()
+    
     return () => {
       isActive = false
     }
 
   }, [filmId])
+  
   console.log(filmOmdb)
 
-  const [film, setState] = useState(() => {
-    return films.filter(film => film.id === filmId)[0]
-  })
-
-  console.log(film)
+  const [film] = useState(() => films.filter(film => film.id === filmId)[0])
 
   return (
     <>
       <View style={styles.container}>
         <Wrapper uri={film.poster}>
-          <ScrollView>
+          <ScrollView showsVerticalScrollIndicator={false}>
             <ButtonBack />
             <FilmCard
               picture={film.poster}
@@ -77,7 +78,7 @@ export const Film: FC<IFilmProps> = ({
                 onPress={() => { }}
                 {...trailerButton}
               />
-              <Info time={filmOmdb.Runtime} genre={film.genre} />
+              <Info time={filmOmdb.Runtime} genre={filmOmdb.Genre} />
             </View>
             <ViewWrapper title='Storyline'>
               <Body2>{filmOmdb.Plot}</Body2>
