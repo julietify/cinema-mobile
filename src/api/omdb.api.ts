@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Config from 'react-native-config'
 
 import { IOmdbResponse } from '../interfaces/IOmdb'
 
@@ -7,7 +8,7 @@ export const omdbApi = () => {
     baseURL: 'http://www.omdbapi.com'
   })
 
-  const key = process.env.OMDB_KEY
+  const key = Config.OMDB_KEY
 
   return {
     film: async (id: string) => {
