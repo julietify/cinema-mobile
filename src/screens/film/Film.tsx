@@ -17,6 +17,7 @@ import { palette } from "../../theme/palette"
 import { films } from '../../utils/films'
 
 import { omdbApi } from '../../api/omdb.api'
+import { IOmdbResponse } from '../../interfaces/IOmdb'
 
 interface IFilmProps {
   route: FilmRouteProp
@@ -28,33 +29,27 @@ export const Film: FC<IFilmProps> = ({
 
   const { filmId } = route.params
 
-  const [filmData, setFilmData] = useState<any>({})
+  const [filmOmdb, setFilmOmdb] = useState({} as IOmdbResponse)
 
   useEffect(() => {
     let isActive = true
-
     const fetchRating = async () => {
-        try {
-            
-            const res = await omdbApi().film(filmId)
-
-            if(isActive) {
-                setFilmData(res.data)
-            }
-
-        } catch (err) {
-            console.log(err)
+      try {
+        const res = await omdbApi().film(filmId)
+        if (isActive) {
+          setFilmOmdb(res.data)
         }
+      } catch (err) {
+        console.log(err)
+      }
     }
-
     fetchRating()
-
     return () => {
-        isActive = false
+      isActive = false
     }
 
-}, [route.params.filmId])
-console.log(filmData)
+  }, [filmId])
+  console.log(filmOmdb)
 
   const [film, setState] = useState(() => {
     return films.filter(film => film.id === filmId)[0]
@@ -64,40 +59,40 @@ console.log(filmData)
 
   return (
     <>
-    <View style={styles.container}>
-      <Wrapper uri={film.poster}>
-        <ScrollView>
-          <ButtonBack />
-          <FilmCard 
-            picture={film.poster} 
-            onPress={() => {}} 
-          />
-          <View style={styles.nameContainer}>
-            <Title>{filmData.Title}</Title>
-          </View>
-          <View style={styles.trailerContainer}>
-            <ButtonIcon 
-              iconName='play'
-              text='Watch trailer'
-              onPress={() => {}} 
-              {...trailerButton}
+      <View style={styles.container}>
+        <Wrapper uri={film.poster}>
+          <ScrollView>
+            <ButtonBack />
+            <FilmCard
+              picture={film.poster}
+              onPress={() => { }}
             />
-            <Info time={filmData.Runtime} genre={film.genre} />
+            <View style={styles.nameContainer}>
+              <Title>{filmOmdb.Title}</Title>
+            </View>
+            <View style={styles.trailerContainer}>
+              <ButtonIcon
+                iconName='play'
+                text='Watch trailer'
+                onPress={() => { }}
+                {...trailerButton}
+              />
+              <Info time={filmOmdb.Runtime} genre={film.genre} />
+            </View>
+            <ViewWrapper title='Storyline'>
+              <Body2>{filmOmdb.Plot}</Body2>
+            </ViewWrapper>
+          </ScrollView>
+          <View style={styles.bookContainer}>
+            <ButtonIcon
+              text='Book now'
+              iconName='ticket-confirmation'
+              onPress={() => { }}
+              {...bookButton}
+            />
           </View>
-          <ViewWrapper title='Storyline'>
-            <Body2>{filmData.Plot}</Body2>
-          </ViewWrapper>
-        </ScrollView>
-        <View style={styles.bookContainer}>
-          <ButtonIcon 
-            text='Book now' 
-            iconName='ticket-confirmation'
-            onPress={() => {}} 
-            {...bookButton}
-          />
-        </View>
-      </Wrapper>
-    </View>
+        </Wrapper>
+      </View>
     </>
   )
 }
@@ -112,11 +107,11 @@ const styles = StyleSheet.create({
   trailerContainer: {
     alignItems: 'center'
   },
-  bookContainer:{
-    bottom: 0, 
-    position: 'relative', 
-    width: '100%', 
-    alignItems: 'center', 
+  bookContainer: {
+    bottom: 0,
+    position: 'relative',
+    width: '100%',
+    alignItems: 'center',
     backgroundColor: 'transparent'
   }
 })
@@ -131,5 +126,5 @@ const trailerButton = {
 const bookButton = {
   brRadius: 15,
   p: 13,
-  bgColor: palette.main.lightblue 
+  bgColor: palette.main.lightblue
 }
