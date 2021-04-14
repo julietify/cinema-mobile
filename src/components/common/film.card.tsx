@@ -3,16 +3,14 @@ import { View, Image, StyleSheet, useWindowDimensions, TouchableOpacity } from '
 
 interface IFilmCard {
   picture: string
-  id: string
+  id?: string
   name?: string
-  genre?: string
   onPress?: (id: string) => void
 }
 
 export const FilmCard = memo<IFilmCard>(({
   picture,
   name,
-  genre,
   id,
   onPress
 }) => {

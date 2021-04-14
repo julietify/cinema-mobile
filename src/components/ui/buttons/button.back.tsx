@@ -3,6 +3,8 @@ import { useNavigation } from '@react-navigation/core'
 import { TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
+import { palette } from '../../../theme/palette'
+
 export const ButtonBack = memo(() => {
   const navigation = useNavigation()
 
@@ -10,11 +12,12 @@ export const ButtonBack = memo(() => {
     <TouchableOpacity 
       onPress={() => navigation.goBack()} 
       style={{  
-        margin: 20,
+        marginVertical: 50,
+        marginHorizontal: 30,
         width: 30
       }}
     >
-      <Icon name='chevron-left' size={30} color='#161616' />
+      <Icon name='close-circle' size={30} color={palette.main.silver} />
     </TouchableOpacity>
   )
 })
