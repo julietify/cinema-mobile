@@ -12,7 +12,7 @@ export const omdbApi = () => {
 
   return {
     film: async (id: string) => {
-      return await api.get<IOmdbResponse>(`/?apiKey=${key}`)
+      return await api.get<IOmdbResponse>(`?i=${id}&apikey=${key}`)
     }
   }
 }

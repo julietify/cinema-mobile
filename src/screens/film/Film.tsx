@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react"
+import React, { FC, useState, useEffect } from "react"
 import { View, StyleSheet, ScrollView } from "react-native"
 
 import { FilmCard } from "../../components/common/film.card"
@@ -16,6 +16,8 @@ import type { FilmRouteProp } from '../../navigation/stacks/film.stack'
 import { palette } from "../../theme/palette"
 import { films } from '../../utils/films'
 
+import { omdbApi } from '../../api/omdb.api'
+
 interface IFilmProps {
   route: FilmRouteProp
 }
@@ -25,6 +27,34 @@ export const Film: FC<IFilmProps> = ({
 }) => {
 
   const { filmId } = route.params
+
+  const [filmData, setFilmData] = useState<any>({})
+
+  useEffect(() => {
+    let isActive = true
+
+    const fetchRating = async () => {
+        try {
+            
+            const res = await omdbApi().film(filmId)
+
+            if(isActive) {
+                setFilmData(res.data)
+            }
+
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    fetchRating()
+
+    return () => {
+        isActive = false
+    }
+
+}, [route.params.filmId])
+console.log(filmData)
 
   const [film, setState] = useState(() => {
     return films.filter(film => film.id === filmId)[0]
@@ -43,7 +73,7 @@ export const Film: FC<IFilmProps> = ({
             onPress={() => {}} 
           />
           <View style={styles.nameContainer}>
-            <Title>{film.name}</Title>
+            <Title>{filmData.Title}</Title>
           </View>
           <View style={styles.trailerContainer}>
             <ButtonIcon 
@@ -52,10 +82,10 @@ export const Film: FC<IFilmProps> = ({
               onPress={() => {}} 
               {...trailerButton}
             />
-            <Info time={film.time} genre={film.genre} />
+            <Info time={filmData.Runtime} genre={film.genre} />
           </View>
           <ViewWrapper title='Storyline'>
-            <Body2>{film.story}</Body2>
+            <Body2>{filmData.Plot}</Body2>
           </ViewWrapper>
         </ScrollView>
         <View style={styles.bookContainer}>
