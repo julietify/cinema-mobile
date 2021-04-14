@@ -20,8 +20,8 @@ export const Home: FC = () => {
           <FilmCard 
             onPress={redirectoToFilmScreen} 
             name={item.name} 
-            picture={item.poster}
             id={item.id} 
+            picture={item.poster}
           />
         }
         keyExtractor={(_, index) => index.toString()}

@@ -7,7 +7,9 @@ import { IButton } from '../../../interfaces/IButton'
 interface IButtonIcon extends IButton {
   iconName: string
   iconColor?: string
+  brRadius?: number
   w?: number
+  p?: number
 }
 
 export const ButtonIcon: FC<IButtonIcon> = ({
@@ -15,6 +17,8 @@ export const ButtonIcon: FC<IButtonIcon> = ({
   iconColor,
   text,
   bgColor,
+  brRadius,
+  p,
   w,
   onPress
 }) => {
@@ -31,7 +35,9 @@ export const ButtonIcon: FC<IButtonIcon> = ({
         style={{ 
           ...styles.container, 
           width: w || defaultWidth, 
-          backgroundColor: bgColor
+          backgroundColor: bgColor,
+          borderRadius: brRadius || 10,
+          padding: p || 17
         }}
       >
         <Icon name={iconName} size={25} color={iconColor || '#fff'} />
@@ -45,10 +51,10 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'space-between',
     flexDirection: 'row',
-    padding: 17,
+    // padding: 10,
     marginTop: 10,
     marginBottom: 10,
-    borderRadius: 10,
+    // borderRadius: 10,
     elevation: 15
   },
   text: {
