@@ -1,4 +1,5 @@
 import React, { FC, useState, useEffect } from "react"
+
 import { View, StyleSheet, ScrollView} from "react-native"
 
 import { FilmCard } from "../../components/common/film.card"
@@ -49,6 +50,7 @@ export const Film: FC<IFilmProps> = ({
         console.log(err)
       }
     }
+
     fetchFilm()
     
     return () => {
