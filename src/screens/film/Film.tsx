@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from "react"
-import { View, StyleSheet, ScrollView } from "react-native"
+import { View, StyleSheet, ScrollView} from "react-native"
 
 import { FilmCard } from "../../components/common/film.card"
 import { Info } from "../../components/film/views/info.view"
@@ -18,6 +18,7 @@ import { films } from '../../utils/films'
 
 import { omdbApi } from '../../api/omdb.api'
 import { IOmdbResponse } from '../../interfaces/IOmdb'
+import { Loader} from '../../components/common/loader'
 
 interface IFilmProps {
   route: FilmRouteProp
@@ -31,34 +32,41 @@ export const Film: FC<IFilmProps> = ({
 
   const [filmOmdb, setFilmOmdb] = useState<IOmdbResponse>({} as IOmdbResponse)
 
+  const [Loading, setLoading] = useState(true)
+
   useEffect(() => {
     let isActive = true
-    const fetchRating = async () => {
+
+    const fetchFilm = async () => {
       try {
         const res = await omdbApi().film(filmId)
+        
         if (isActive) {
           setFilmOmdb(res.data)
+          setLoading(false)
         }
       } catch (err) {
         console.log(err)
       }
     }
-    fetchRating()
+    fetchFilm()
+    
     return () => {
       isActive = false
     }
 
   }, [filmId])
+  
   console.log(filmOmdb)
 
-  const [film, setState] = useState(() => {
-    return films.filter(film => film.id === filmId)[0]
-  })
+  const [film] = useState(() => films.filter(film => film.id === filmId)[0])
+
+  if(Loading) return <Loader/>
+
   return (
-    <>
       <View style={styles.container}>
         <Wrapper uri={film.poster}>
-          <ScrollView>
+          <ScrollView showsVerticalScrollIndicator={false}>
             <ButtonBack />
             <FilmCard
               picture={film.poster}
@@ -74,7 +82,7 @@ export const Film: FC<IFilmProps> = ({
                 onPress={() => { }}
                 {...trailerButton}
               />
-              <Info time={filmOmdb.Runtime} genre={film.genre} />
+              <Info time={filmOmdb.Runtime} genre={filmOmdb.Genre} />
             </View>
             <ViewWrapper title='Storyline'>
               <Body2>{filmOmdb.Plot}</Body2>
@@ -90,7 +98,6 @@ export const Film: FC<IFilmProps> = ({
           </View>
         </Wrapper>
       </View>
-    </>
   )
 }
 const styles = StyleSheet.create({
