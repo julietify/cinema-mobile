@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from "react"
-import { View, StyleSheet, ScrollView, Text } from "react-native"
+import { View, StyleSheet, ScrollView} from "react-native"
 
 import { FilmCard } from "../../components/common/film.card"
 import { Info } from "../../components/film/views/info.view"
@@ -18,6 +18,7 @@ import { films } from '../../utils/films'
 
 import { omdbApi } from '../../api/omdb.api'
 import { IOmdbResponse } from '../../interfaces/IOmdb'
+import { Loader} from '../../components/common/loader'
 
 interface IFilmProps {
   route: FilmRouteProp
@@ -30,6 +31,8 @@ export const Film: FC<IFilmProps> = ({
   const { filmId } = route.params
 
   const [filmOmdb, setFilmOmdb] = useState<IOmdbResponse>({} as IOmdbResponse)
+  const [loading, setLoading] = useState(true)
+  const [film] = useState(() => films.filter(film => film.id === filmId)[0])
 
   useEffect(() => {
     let isActive = true
@@ -40,6 +43,7 @@ export const Film: FC<IFilmProps> = ({
         
         if (isActive) {
           setFilmOmdb(res.data)
+          setLoading(false)
         }
       } catch (err) {
         console.log(err)
@@ -54,12 +58,9 @@ export const Film: FC<IFilmProps> = ({
 
   }, [filmId])
   
-  console.log(filmOmdb)
-
-  const [film] = useState(() => films.filter(film => film.id === filmId)[0])
+  if(loading) return <Loader/>
 
   return (
-    <>
       <View style={styles.container}>
         <Wrapper uri={film.poster}>
           <ScrollView showsVerticalScrollIndicator={false}>
@@ -94,7 +95,6 @@ export const Film: FC<IFilmProps> = ({
           </View>
         </Wrapper>
       </View>
-    </>
   )
 }
 const styles = StyleSheet.create({
