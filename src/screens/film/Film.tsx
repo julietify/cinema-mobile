@@ -8,6 +8,7 @@ import { Wrapper } from "../../components/film/wrappers/film.wrapper"
 import { ViewWrapper } from "../../components/film/wrappers/view.wrapper"
 
 import { ButtonBack } from "../../components/ui/buttons/button.back"
+import { ButtonLike } from "../../components/film/watchlist/button.like"
 import { ButtonIcon } from "../../components/ui/buttons/button.icon"
 import { Title, Body2 } from "../../components/ui/typography/title"
 
@@ -57,14 +58,18 @@ export const Film: FC<IFilmProps> = ({
     }
 
   }, [filmId])
-  
+
   if(loading) return <Loader/>
+  console.log(filmId)
 
   return (
       <View style={styles.container}>
         <Wrapper uri={film.poster}>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <ButtonBack />
+            <View style={styles.buttonsContainer}>
+              <ButtonBack />
+              <ButtonLike/>
+            </View>
             <FilmCard
               picture={film.poster}
               onPress={() => { }}
@@ -100,6 +105,10 @@ export const Film: FC<IFilmProps> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+  buttonsContainer:{
+    flexDirection:'row',
+    justifyContent:'space-between'
   },
   nameContainer: {
     alignItems: 'center',
