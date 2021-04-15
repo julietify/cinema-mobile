@@ -1,5 +1,4 @@
 import React, { FC, useState, useEffect } from "react"
-
 import { View, StyleSheet, ScrollView} from "react-native"
 
 import { FilmCard } from "../../components/common/film.card"
@@ -32,8 +31,8 @@ export const Film: FC<IFilmProps> = ({
   const { filmId } = route.params
 
   const [filmOmdb, setFilmOmdb] = useState<IOmdbResponse>({} as IOmdbResponse)
-
-  const [Loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true)
+  const [film] = useState(() => films.filter(film => film.id === filmId)[0])
 
   useEffect(() => {
     let isActive = true
@@ -59,11 +58,7 @@ export const Film: FC<IFilmProps> = ({
 
   }, [filmId])
   
-  console.log(filmOmdb)
-
-  const [film] = useState(() => films.filter(film => film.id === filmId)[0])
-
-  if(Loading) return <Loader/>
+  if(loading) return <Loader/>
 
   return (
       <View style={styles.container}>
