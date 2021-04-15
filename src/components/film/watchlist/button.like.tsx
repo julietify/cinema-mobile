@@ -8,10 +8,6 @@ export const ButtonLike = memo(() => {
 
   const [like, setLike] = useState(false)
 
-  // const click = () => {
-  //   if(like === true) { setLike(false)}
-  //   else setLike(true)
-  // }
   return (
     <TouchableOpacity
       onPress={() => setLike(!like) }

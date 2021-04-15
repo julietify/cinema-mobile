@@ -66,7 +66,7 @@ export const Film: FC<IFilmProps> = ({
       <View style={styles.container}>
         <Wrapper uri={film.poster}>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+            <View style={styles.buttonsContainer}>
               <ButtonBack />
               <ButtonLike/>
             </View>
@@ -105,6 +105,10 @@ export const Film: FC<IFilmProps> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+  buttonsContainer:{
+    flexDirection:'row',
+    justifyContent:'space-between'
   },
   nameContainer: {
     alignItems: 'center',
