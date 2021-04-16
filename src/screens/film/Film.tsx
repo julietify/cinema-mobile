@@ -4,6 +4,7 @@ import { View, StyleSheet, ScrollView, FlatList } from "react-native"
 import { FilmCard } from "../../components/common/film.card"
 import { Info } from "../../components/film/views/info.view"
 import { ActorCard } from '../../components/cast/cards/actor.card'
+import { FilmRating } from '../../components/film/film.rating'
 
 import { Wrapper } from "../../components/film/wrappers/film.wrapper"
 import { ViewWrapper } from "../../components/film/wrappers/view.wrapper"
@@ -63,7 +64,7 @@ export const Film: FC<IFilmProps> = ({
   }, [filmId])
 
   if (loading) return <Loader />
-  console.log(filmId)
+  console.log(filmOmdb.imdbRating)
 
   return (
     <View style={styles.container}>
@@ -88,6 +89,9 @@ export const Film: FC<IFilmProps> = ({
               {...trailerButton}
             />
             <Info time={filmOmdb.Runtime} genre={filmOmdb.Genre} />
+          </View>
+          <View style={styles.filmRating}>
+            <FilmRating rating={filmOmdb.Ratings}/>
           </View>
           <ViewWrapper title='Storyline'>
             <Body2>{filmOmdb.Plot}</Body2>
@@ -135,6 +139,9 @@ const styles = StyleSheet.create({
   },
   trailerContainer: {
     alignItems: 'center'
+  },
+  filmRating: {
+    alignItems:'center',
   },
   bookContainer: {
     bottom: 0,

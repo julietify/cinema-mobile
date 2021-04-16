@@ -17,7 +17,7 @@ export const ButtonLike = memo(() => {
         width: 30
       }}
     >
-      <Icon name={like ? 'cards-heart' : 'heart-outline'} size={30} color={palette.main.silver}/>
+      <Icon name={like ? 'cards-heart' : 'heart-outline'} size={30} color={like ? 'blue' : palette.main.silver}/>
     </TouchableOpacity>
   )
 })
