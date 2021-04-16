@@ -64,7 +64,7 @@ export const Film: FC<IFilmProps> = ({
   }, [filmId])
 
   if (loading) return <Loader />
-  console.log(filmOmdb.imdbRating)
+  console.log(filmOmdb)
 
   return (
     <View style={styles.container}>
@@ -91,7 +91,7 @@ export const Film: FC<IFilmProps> = ({
             <Info time={filmOmdb.Runtime} genre={filmOmdb.Genre} />
           </View>
           <View style={styles.filmRating}>
-            <FilmRating rating={filmOmdb.Ratings}/>
+            <FilmRating imdbRating={filmOmdb.imdbRating} rating={filmOmdb.Ratings}/>
           </View>
           <ViewWrapper title='Storyline'>
             <Body2>{filmOmdb.Plot}</Body2>
