@@ -4,15 +4,19 @@ import { View, StyleSheet } from 'react-native'
 import { Title, Body1 } from "../ui/typography/title"
 
 interface IFilmRating{
+  imdbRating
   rating
 }
 
 export const FilmRating = memo<IFilmRating>(({
-  rating
+  rating,
+  imdbRating
 }) => {
+  let arrow = rating.slice(1)
+  arrow.push({"Source": "iMDb", "Value": `${imdbRating}`})
   return(
     <View style={styles.wrapper}>
-      {rating.map( i => <View key={i.Source} style={styles.container}>
+      {arrow.map( i => <View key={i.Source} style={styles.container}>
         <Title style={{fontSize:22}}>{i.Value}</Title>
         <Body1>{i.Source}</Body1>
       </View>)}
