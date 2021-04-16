@@ -1,8 +1,9 @@
 import React, { FC, useState, useEffect } from "react"
-import { View, StyleSheet, ScrollView} from "react-native"
+import { View, StyleSheet, ScrollView, FlatList } from "react-native"
 
 import { FilmCard } from "../../components/common/film.card"
 import { Info } from "../../components/film/views/info.view"
+import { ActorCard } from '../../components/cast/cards/actor.card'
 
 import { Wrapper } from "../../components/film/wrappers/film.wrapper"
 import { ViewWrapper } from "../../components/film/wrappers/view.wrapper"
@@ -19,7 +20,9 @@ import { films } from '../../utils/films'
 
 import { omdbApi } from '../../api/omdb.api'
 import { IOmdbResponse } from '../../interfaces/IOmdb'
-import { Loader} from '../../components/common/loader'
+import { Loader } from '../../components/common/loader'
+
+import { actors } from "../../utils/actors"
 
 interface IFilmProps {
   route: FilmRouteProp
@@ -41,7 +44,7 @@ export const Film: FC<IFilmProps> = ({
     const fetchFilm = async () => {
       try {
         const res = await omdbApi().film(filmId)
-        
+
         if (isActive) {
           setFilmOmdb(res.data)
           setLoading(false)
@@ -52,63 +55,79 @@ export const Film: FC<IFilmProps> = ({
     }
 
     fetchFilm()
-    
+
     return () => {
       isActive = false
     }
 
   }, [filmId])
 
-  if(loading) return <Loader/>
+  if (loading) return <Loader />
   console.log(filmId)
 
   return (
-      <View style={styles.container}>
-        <Wrapper uri={film.poster}>
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <View style={styles.buttonsContainer}>
-              <ButtonBack />
-              <ButtonLike/>
-            </View>
-            <FilmCard
-              picture={film.poster}
-              onPress={() => { }}
-            />
-            <View style={styles.nameContainer}>
-              <Title>{filmOmdb.Title}</Title>
-            </View>
-            <View style={styles.trailerContainer}>
-              <ButtonIcon
-                iconName='play'
-                text='Watch trailer'
-                onPress={() => { }}
-                {...trailerButton}
-              />
-              <Info time={filmOmdb.Runtime} genre={filmOmdb.Genre} />
-            </View>
-            <ViewWrapper title='Storyline'>
-              <Body2>{filmOmdb.Plot}</Body2>
-            </ViewWrapper>
-          </ScrollView>
-          <View style={styles.bookContainer}>
-            <ButtonIcon
-              text='Book now'
-              iconName='ticket-confirmation'
-              onPress={() => { }}
-              {...bookButton}
-            />
+    <View style={styles.container}>
+      <Wrapper uri={film.poster}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={styles.buttonsContainer}>
+            <ButtonBack />
+            <ButtonLike />
           </View>
-        </Wrapper>
-      </View>
+          <FilmCard
+            picture={film.poster}
+            onPress={() => { }}
+          />
+          <View style={styles.nameContainer}>
+            <Title>{filmOmdb.Title}</Title>
+          </View>
+          <View style={styles.trailerContainer}>
+            <ButtonIcon
+              iconName='play'
+              text='Watch trailer'
+              onPress={() => { }}
+              {...trailerButton}
+            />
+            <Info time={filmOmdb.Runtime} genre={filmOmdb.Genre} />
+          </View>
+          <ViewWrapper title='Storyline'>
+            <Body2>{filmOmdb.Plot}</Body2>
+          </ViewWrapper>
+          <ViewWrapper title='Actors'>
+            <FlatList
+              data={actors}
+              renderItem={({ item }) =>
+                <ActorCard
+                  actorName={item.name}
+                  actorRole={item.role}
+                  picture={item.poster}
+                />
+              }
+              keyExtractor={(_, index) => index.toString()}
+              horizontal
+              decelerationRate={0.99}
+              showsHorizontalScrollIndicator={false}
+            />
+          </ViewWrapper>
+        </ScrollView>
+        <View style={styles.bookContainer}>
+          <ButtonIcon
+            text='Book now'
+            iconName='ticket-confirmation'
+            onPress={() => { }}
+            {...bookButton}
+          />
+        </View>
+      </Wrapper>
+    </View>
   )
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  buttonsContainer:{
-    flexDirection:'row',
-    justifyContent:'space-between'
+  buttonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   nameContainer: {
     alignItems: 'center',
