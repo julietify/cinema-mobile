@@ -1,19 +1,34 @@
-import React, { FC, memo } from "react"
+import React, { memo, useEffect, useState } from "react"
 import { FlatList } from "react-native"
+import { tmdbApi } from "../../api/tmdb.api"
 
-import { actors } from "../../utils/actors"
 import { ActorCard } from "./cards/actor.card"
 
-export const CastList = memo(() => {
+export const CastList = memo<{filmId: string}>(({
+  filmId
+}) => {
+
+  const [cast, setCast] = useState([])
+
+  useEffect(() => {
+    
+    const getCast = async () => {
+      const castResponse = await tmdbApi().cast(filmId)
+      setCast(castResponse)
+    }
+
+    getCast()
+
+  }, [])
   
   return (
     <FlatList
-      data={actors}
+      data={cast}
       renderItem={({ item }) =>
         <ActorCard
           actorName={item.name}
-          actorRole={item.role}
-          picture={item.poster}
+          actorRole={item.character}
+          picture={item.profile_path}
         />
       }
       keyExtractor={(_, index) => index.toString()}
