@@ -6,7 +6,10 @@ export const filmStyles = StyleSheet.create({
   },
   buttonsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    alignItems: 'center',
+    height: 120
   },
   nameContainer: {
     alignItems: 'center',
