@@ -1,10 +1,10 @@
 import React, { FC, useState, useEffect } from "react"
-import { View, StyleSheet, ScrollView, FlatList } from "react-native"
+import { View, ScrollView } from "react-native"
 
 import { FilmCard } from "../../components/common/film.card"
 import { Info } from "../../components/film/views/info.view"
-import { ActorCard } from '../../components/cast/cards/actor.card'
-import { FilmRating } from '../../components/film/film.rating'
+import { Rating } from "../../components/film/views/rating.view"
+import { CastList } from "../../components/cast/cast.list"
 
 import { Wrapper } from "../../components/film/wrappers/film.wrapper"
 import { ViewWrapper } from "../../components/film/wrappers/view.wrapper"
@@ -23,7 +23,7 @@ import { omdbApi } from '../../api/omdb.api'
 import { IOmdbResponse } from '../../interfaces/IOmdb'
 import { Loader } from '../../components/common/loader'
 
-import { actors } from "../../utils/actors"
+import { filmStyles } from "../../components/film/styles/film.styles"
 
 interface IFilmProps {
   route: FilmRouteProp
@@ -64,13 +64,12 @@ export const Film: FC<IFilmProps> = ({
   }, [filmId])
 
   if (loading) return <Loader />
-  console.log(filmOmdb)
 
   return (
-    <View style={styles.container}>
+    <View style={filmStyles.container}>
       <Wrapper uri={film.poster}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={styles.buttonsContainer}>
+          <View style={filmStyles.buttonsContainer}>
             <ButtonBack />
             <ButtonLike />
           </View>
@@ -78,10 +77,10 @@ export const Film: FC<IFilmProps> = ({
             picture={film.poster}
             onPress={() => { }}
           />
-          <View style={styles.nameContainer}>
+          <View style={filmStyles.nameContainer}>
             <Title>{filmOmdb.Title}</Title>
           </View>
-          <View style={styles.trailerContainer}>
+          <View style={filmStyles.trailerContainer}>
             <ButtonIcon
               iconName='play'
               text='Watch trailer'
@@ -90,30 +89,17 @@ export const Film: FC<IFilmProps> = ({
             />
             <Info time={filmOmdb.Runtime} genre={filmOmdb.Genre} />
           </View>
-          <View style={styles.filmRating}>
-            <FilmRating imdbRating={filmOmdb.imdbRating} rating={filmOmdb.Ratings}/>
+          <View style={filmStyles.filmRating}>
+            <Rating imdbRating={filmOmdb.imdbRating} rating={filmOmdb.Ratings}/>
           </View>
           <ViewWrapper title='Storyline'>
             <Body2>{filmOmdb.Plot}</Body2>
           </ViewWrapper>
           <ViewWrapper title='Actors'>
-            <FlatList
-              data={actors}
-              renderItem={({ item }) =>
-                <ActorCard
-                  actorName={item.name}
-                  actorRole={item.role}
-                  picture={item.poster}
-                />
-              }
-              keyExtractor={(_, index) => index.toString()}
-              horizontal
-              decelerationRate={0.99}
-              showsHorizontalScrollIndicator={false}
-            />
+            <CastList filmId={filmId} />
           </ViewWrapper>
         </ScrollView>
-        <View style={styles.bookContainer}>
+        <View style={filmStyles.bookContainer}>
           <ButtonIcon
             text='Book now'
             iconName='ticket-confirmation'
@@ -125,32 +111,6 @@ export const Film: FC<IFilmProps> = ({
     </View>
   )
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  buttonsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  nameContainer: {
-    alignItems: 'center',
-    marginVertical: 20
-  },
-  trailerContainer: {
-    alignItems: 'center'
-  },
-  filmRating: {
-    alignItems:'center',
-  },
-  bookContainer: {
-    bottom: 0,
-    position: 'relative',
-    width: '100%',
-    alignItems: 'center',
-    backgroundColor: 'transparent'
-  }
-})
 
 const trailerButton = {
   brRadius: 30,
