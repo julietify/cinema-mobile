@@ -2,6 +2,7 @@ import React, { memo } from 'react'
 import { ImageBackground, View, StyleSheet } from 'react-native'
 
 import { Body1, Body2 } from '../../ui/typography/title'
+import { imgpath } from '../../../utils/constants'
 
 interface IActorCard {
   actorRole: string
@@ -15,7 +16,7 @@ export const ActorCard = memo<IActorCard>(({
   picture
 }) => {
   
-  const image = { uri: picture }
+  const image = { uri: `${imgpath}${picture}` }
 
   return(
     <View style={styles.container}>
