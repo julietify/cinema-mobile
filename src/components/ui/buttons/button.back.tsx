@@ -9,14 +9,7 @@ export const ButtonBack = memo(() => {
   const navigation = useNavigation()
 
   return (
-    <TouchableOpacity 
-      onPress={() => navigation.goBack()} 
-      style={{  
-        marginVertical: 50,
-        marginHorizontal: 30,
-        width: 30
-      }}
-    >
+    <TouchableOpacity onPress={() => navigation.goBack()}>
       <Icon name='close-circle' size={30} color={palette.main.silver} />
     </TouchableOpacity>
   )
