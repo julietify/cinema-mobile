@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
 import { ImageBackground, View, StyleSheet } from 'react-native'
+
 import { Body1, Body2 } from '../../ui/typography/title'
 
 interface IActorCard {
@@ -13,10 +14,16 @@ export const ActorCard = memo<IActorCard>(({
   actorName,
   picture
 }) => {
-  const image = { uri: picture };
+  
+  const image = { uri: picture }
+
   return(
     <View style={styles.container}>
-      <ImageBackground source={image} style={styles.image} imageStyle={{borderRadius:10}} />
+      <ImageBackground 
+        source={image} 
+        style={styles.bgImage} 
+        imageStyle={styles.image} 
+      />
       <Body1>{actorRole}</Body1>
       <Body2>{actorName}</Body2>
     </View>
@@ -24,12 +31,15 @@ export const ActorCard = memo<IActorCard>(({
 })
 
 const styles = StyleSheet.create({
+  bgImage: {
+    width: 95,
+    height: 120,
+    marginHorizontal: 10
+  },
   image: {
-    width:70,
-    height:90,
-    marginHorizontal:20
+    borderRadius: 5
   },
   container: {
-    alignItems:'center'
+    alignItems: 'center'
   }
 })
