@@ -17,9 +17,9 @@ interface ITicketProps {
   age: String
   technology: String
   price: String
-  IWidth: number
-  IHeight: number
-  LineHeight: number
+  iWidth: number
+  iHeight: number
+  lineHeight: number
   sited: String
 }
 export const Ticket: FC<ITicketProps> = ({
@@ -32,18 +32,18 @@ export const Ticket: FC<ITicketProps> = ({
   age,
   technology,
   price,
-  IWidth,
-  IHeight,
-  LineHeight,
+  iWidth,
+  iHeight,
+  lineHeight,
   sited
 }) => {
   const { width } = useWindowDimensions()
 
   return (
     <View style={{width:width,alignItems:'center',justifyContent:'center'}}>
-      <View style={{ width: IWidth }}>
+      <View style={{ width: iWidth }}>
         <TicketName name={name} />
-        <LineSvg Iwidth={IWidth} height={LineHeight} />
+        <LineSvg Iwidth={iWidth} height={lineHeight} />
         <TicketInformation
           time={time}
           date={date}
@@ -54,7 +54,7 @@ export const Ticket: FC<ITicketProps> = ({
           price={price}
           sited={sited}
         />
-        <ImageSvg Iwidth={IWidth} height={IHeight} />
+        <ImageSvg Iwidth={iWidth} height={iHeight} />
         <TicketCode code={code} />
       </View>
     </View>

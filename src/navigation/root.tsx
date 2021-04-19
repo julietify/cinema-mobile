@@ -57,7 +57,7 @@ export const RootStackScreen: FC = () => {
       <Stack.Screen 
         name='RootTicket'
         component={TicketStackScreen}
-        options={screenConfig.Ticket}
+        options={screenConfig.ticket}
       />
     </Stack.Navigator>
   )

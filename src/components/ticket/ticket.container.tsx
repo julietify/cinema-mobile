@@ -21,8 +21,8 @@ export const TicketContainer: FC<ITicketContainerProps> = ({
   const { width } = useWindowDimensions()
 
   const iWidth = width * .8
-  const IHeight = iWidth / 15
-  const LineHeight = iWidth / 80
+  const iHeight = iWidth / 15
+  const lineHeight = iWidth / 80
 
   const [ticket] = useState(() => tickets.filter(ticket => ticket.order === ticketOrder)[0])
 
@@ -48,9 +48,9 @@ export const TicketContainer: FC<ITicketContainerProps> = ({
               sited={item.sited}
               technology={ticket.technology}
               price={ticket.price}
-              IWidth={iWidth}
-              IHeight={IHeight}
-              LineHeight={LineHeight}
+              iWidth={iWidth}
+              iHeight={iHeight}
+              lineHeight={lineHeight}
             />
           }
           keyExtractor={(_, index) => index.toString()}
