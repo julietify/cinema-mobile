@@ -54,11 +54,6 @@ export const RootStackScreen: FC = () => {
         component={FilmStackScreen}
         options={screenConfig.film}
       />
-      <Stack.Screen 
-        name='RootTicket'
-        component={TicketStackScreen}
-        options={screenConfig.ticket}
-      />
     </Stack.Navigator>
   )
 }

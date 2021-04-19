@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import { Home } from '../../screens/Home'
-import { Tickets } from '../../screens/Tickets'
+import { Tickets } from '../../screens/ticket/Tickets'
 import { Watchlist } from '../../screens/Watchlist'
 import { Calendar } from '../../screens/Calendar'
 
@@ -14,8 +14,7 @@ export const BottomTabBar: FC = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused }) => renderBarIcons(route.name, focused),
-        
+        tabBarIcon: ({ focused }) => renderBarIcons(route.name, focused)
       })
     }
       tabBarOptions={options}
