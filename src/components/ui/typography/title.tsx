@@ -1,9 +1,8 @@
-import React from 'react'
 import styled from 'styled-components/native'
-import { palette } from '../../../theme/palette'
 
 interface ITypography {
   fontSize?: number | string
+  color?: string
 }
 
 export const Title = styled.Text<ITypography>`
@@ -12,14 +11,19 @@ export const Title = styled.Text<ITypography>`
   color: #fff;
 `
 
-export const Body1 = styled.Text`
+export const Body1 = styled.Text<ITypography>`
   font-size: 12px;
   font-weight: bold;
   margin: 10px;
-  color: rgba(255, 255, 255, .6);
+  color: ${props => props.color || 'rgba(255, 255, 255, .6)'};
 `
 
 export const Body2 = styled.Text`
   font-size: 13px;
   color: rgba(255, 255, 255, .3);
+`
+
+export const Title1 = styled.Text`
+  font-size: 13px;
+  font-weight: bold;
 `
