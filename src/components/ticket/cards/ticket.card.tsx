@@ -6,22 +6,31 @@ import { Title1 } from '../../ui/typography/title'
 interface ITicketCard {
   name: string
   cinema: string
+  ticketId: string
   price: string
   tickets: number
+  onPress?: (ticketId: string) => void
 }
 
 export const TicketCard = memo<ITicketCard>(({
   name,
   cinema,
   price,
-  tickets
+  tickets,
+  ticketId,
+  onPress
 }) => {
 
   const { width } = useWindowDimensions()
 
   return (
-    <TouchableOpacity activeOpacity={.6}>
-      <View style={{...styles.container, width: width - 50}}>
+    <TouchableOpacity activeOpacity={.6} onPress={() => onPress(ticketId)}>
+      <View 
+        style={{
+          ...styles.container, 
+          width: width - 50
+        }}
+      >
       <Image 
           source={{ uri: 'https://i.pinimg.com/originals/c0/64/b6/c064b6e47c04174393b2ad5078e4f004.png' }}
           style={{
