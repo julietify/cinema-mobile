@@ -7,9 +7,8 @@ interface ITicketInfromation {
   order: String
   cinema: String
   technology: String
-  age: String
-  price: String
-  sited:String
+  seat: String
+  name: String
 }
 
 export const TicketInformation = memo<ITicketInfromation>(({
@@ -18,12 +17,14 @@ export const TicketInformation = memo<ITicketInfromation>(({
   order,
   cinema,
   technology,
-  age,
-  price,
-  sited
+  seat,
+  name
 }) => {
   return (
-    <View>
+    <View style={styles.wrapper}>
+      <View style={styles.nameContainer}>
+        <Text style={styles.textName}>Movie : {name}</Text>
+      </View>
       <View style={styles.container}>
         <View style={styles.firstContainer}>
           <Text style={styles.title}>Date</Text>
@@ -41,7 +42,7 @@ export const TicketInformation = memo<ITicketInfromation>(({
         </View>
         <View>
           <Text style={styles.title}>Seat</Text>
-          <Text style={styles.text}>{sited}</Text>
+          <Text style={styles.text}>{seat}</Text>
         </View>
       </View>
       <View style={styles.container}>
@@ -50,18 +51,8 @@ export const TicketInformation = memo<ITicketInfromation>(({
           <Text style={styles.text}>{technology}</Text>
         </View>
         <View>
-          <Text style={styles.title}>Age</Text>
-          <Text style={styles.text}>{age}</Text>
-        </View>
-      </View>
-      <View style={styles.container}>
-        <View style={styles.firstContainer}>
           <Text style={styles.title}>Order</Text>
           <Text style={styles.text}>{order}</Text>
-        </View>
-        <View>
-          <Text style={styles.title}>Price</Text>
-          <Text style={styles.text}>{price}</Text>
         </View>
       </View>
     </View>
@@ -69,25 +60,38 @@ export const TicketInformation = memo<ITicketInfromation>(({
 })
 
 const styles = StyleSheet.create({
+  wrapper: {
+    backgroundColor:'white',
+    paddingHorizontal:30,
+    borderTopLeftRadius:20,
+    borderTopRightRadius:20,
+  },
+  nameContainer: {
+    paddingTop:30,
+    paddingBottom:10,
+  },
+  textName: {
+    color:'#1E1851',
+    fontWeight:'700',
+    fontSize:17,
+  },
   container: {
     width: '100%',
-    paddingHorizontal:30,
-    paddingVertical:20,
-    backgroundColor: 'white',
+    paddingVertical: 20,
     flexDirection: 'row',
   },
   firstContainer: {
     width: '65%'
   },
   text: {
-    color: 'black',
-    fontSize: 14,
-    fontFamily:'Courier-New',
-    letterSpacing: -1,
-    marginTop:8
+    color: '#1E1851',
+    fontWeight: '700',
+    fontSize: 16,
+    marginTop: 8
   },
   title: {
-    fontSize: 12,
+    fontSize: 13,
+    fontWeight: '700',
     color: 'rgba(0, 0, 0, .3)'
   }
 })

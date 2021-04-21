@@ -17,13 +17,13 @@ export const Tickets: FC = () => {
     <View style={styles.wrapper}>
       <FlatList 
         data={tickets}
-        renderItem={({ item, index }) => 
+        renderItem={({ item }) => 
           <TicketCard 
             name={item.name} 
             cinema={item.cinema} 
             tickets={item.tickets.length} 
             price={item.price} 
-            ticketId={index.toString()}
+            ticketId={item.order}
             onPress={redirectoToTicketScreen}
           />
         }

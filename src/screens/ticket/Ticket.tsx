@@ -1,29 +1,20 @@
 import React, { FC } from 'react'
-import { View, useWindowDimensions, Text } from 'react-native'
+import { View, Text, useWindowDimensions, StyleSheet } from 'react-native'
 
 import { TicketInformation } from '../../components/ticket/ticket/ticket.information'
-import { TicketName } from '../../components/ticket/ticket/ticket.name'
 import { TicketCode } from '../../components/ticket/ticket/ticket.code'
 import { ImageSvg } from '../../components/ticket/image/ticket.image'
-import { LineSvg } from '../../components/ticket/image/ticket.line'
 
-import type { TicketRouteProp } from '../../navigation/stacks/ticket.stack'
 
-interface ITicketProps  {
+interface ITicketProps {
   code: string
   time: string
   date: string
   name: string
   cinema: string
   order: string
-  age: string
   technology: string
-  price: string
-  iWidth: number
-  iHeight: number
-  lineHeight: number
-  sited: string
-  route: TicketRouteProp
+  seat: string
 }
 
 export const Ticket: FC<ITicketProps> = ({
@@ -33,39 +24,40 @@ export const Ticket: FC<ITicketProps> = ({
   name,
   cinema,
   order,
-  age,
   technology,
-  price,
-  iWidth,
-  iHeight,
-  lineHeight,
-  sited,
-  route
+  seat,
 }) => {
 
-  const { ticketId } = route.params
 
   const { width } = useWindowDimensions()
+  const iWidth = width * .75
 
   return (
-    <View>
-      <Text>ticket id {ticketId}</Text>
-      {/* <View style={{ width: iWidth }}>
-        <TicketName name={name} />
-        <LineSvg Iwidth={iWidth} height={lineHeight} />
+    <View style={[{...styles.wrapper},{width:width}]}>
+      <View style={[{...styles.container},{width:iWidth}]}>
         <TicketInformation
+          name={name}
           time={time}
           date={date}
           cinema={cinema}
           order={order}
-          age={age}
           technology={technology}
-          price={price}
-          sited={sited}
+          seat={seat}
         />
-        <ImageSvg Iwidth={iWidth} height={iHeight} />
+        <ImageSvg iWidth={iWidth} iHeight={20} />
         <TicketCode code={code} />
-      </View> */}
+      </View>
     </View>
   )
 }
+const styles = StyleSheet.create( {
+  wrapper: {
+    flex:1,
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  container: {
+    elevation: 25,
+    borderRadius: 1
+  },
+})

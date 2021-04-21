@@ -3,7 +3,7 @@ import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/
 import { RouteProp } from '@react-navigation/native'
 
 import { Tickets } from '../../screens/ticket/Tickets'
-import { Ticket } from '../../screens/ticket/Ticket'
+import { TicketContainer } from '../../components/ticket/ticket.container'
 
 import { screenConfig } from '../config/screen.config'
 
@@ -25,6 +25,6 @@ export const TicketStackScreen = () => (
     }}
   >
     <TicketStack.Screen name="RootTicket" component={Tickets} options={screenConfig.ticket} />
-    <TicketStack.Screen name="Ticket" component={Ticket}  />
+    <TicketStack.Screen name="Ticket" component={TicketContainer}  />
   </TicketStack.Navigator>
 )

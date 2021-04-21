@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 
-import QRCode from 'react-native-qrcode-svg'
+import Barcode from "react-native-barcode-builder";
 
 interface ITicketCode {
   code:String
@@ -12,22 +12,16 @@ export const TicketCode = memo<ITicketCode>(({
 }) => {
   return(
     <View style={styles.container}>
-      <QRCode
-        value={`${code}`}
-        color='#29275E'
-      />
+      <Barcode value={`${code}`} format='CODE128' height={70} width={2.6} />
     </View>
   )
 })
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    paddingHorizontal:30,
-    paddingVertical:30,
+    paddingVertical:15,
     backgroundColor: 'white',
-    flexDirection: 'row',
     borderBottomLeftRadius:20,
     borderBottomRightRadius:20,
-    justifyContent:'center'
   }
 })
