@@ -54,6 +54,11 @@ export const RootStackScreen: FC = () => {
         component={FilmStackScreen}
         options={screenConfig.film}
       />
+      <Stack.Screen 
+        name='Trailer'
+        component={FilmStackScreen}
+        options={screenConfig.trailer}
+      />
     </Stack.Navigator>
   )
 }
