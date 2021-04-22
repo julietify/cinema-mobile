@@ -1,12 +1,11 @@
 import React, { FC } from "react"
 import { Text, View } from "react-native"
+import { Heading } from "../components/common/heading"
 
 export const Calendar: FC = () => {  
   return (
     <View>
-      <Text>
-        Calendar screen
-      </Text>
+      <Heading value='Calendar' />
     </View>
   )
 }

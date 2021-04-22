@@ -1,4 +1,5 @@
 import styled from 'styled-components/native'
+import { palette } from '../../../theme/palette'
 
 interface ITypography {
   fontSize?: number | string
@@ -8,7 +9,7 @@ interface ITypography {
 export const Title = styled.Text<ITypography>`
   font-size: ${props => props.fontSize || '32px'};
   font-weight: bold;
-  color: #fff;
+  color: ${props => props.color || palette.theme.light};
 `
 
 export const Body1 = styled.Text<ITypography>`
