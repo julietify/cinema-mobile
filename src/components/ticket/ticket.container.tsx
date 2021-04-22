@@ -1,72 +1,65 @@
-import React, { FC, useState } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import React, { FC } from 'react'
+import { View, useWindowDimensions, StyleSheet } from 'react-native'
 
-import type { TicketRouteProp } from '../../navigation/stacks/ticket.stack'
+import { TicketInformation } from '../../components/ticket/ticket/ticket.information'
+import { TicketCode } from '../../components/ticket/ticket/ticket.code'
+import { ImageSvg } from '../../components/ticket/image/ticket.image'
 
-import { tickets } from '../../utils/tickets'
-import { Ticket } from '../../screens/ticket/Ticket'
-import { ClientInformation } from './cards/client.informatin'
-
-import { ButtonBack } from '../ui/buttons/button.back'
-import { FlatList } from 'react-native-gesture-handler'
 
 interface ITicketContainerProps {
-  route: TicketRouteProp
+  code: string
+  time: string
+  date: string
+  name: string
+  cinema: string
+  order: string
+  technology: string
+  seat: string
 }
+
 export const TicketContainer: FC<ITicketContainerProps> = ({
-  route
+  code,
+  time,
+  date,
+  name,
+  cinema,
+  order,
+  technology,
+  seat,
 }) => {
 
-  const { ticketId } = route.params
 
-  /*const iHeight = iWidth / 15
-  const lineHeight = iWidth / 80*/
-
-  const [ticket] = useState(() => tickets.filter(ticket => ticket.order === ticketId)[0])
+  const { width } = useWindowDimensions()
+  const iWidth = width * .75
 
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.ticketContainer}>
-        <FlatList
-          data={ticket.tickets}
-          renderItem={({ item }) =>
-            <Ticket
-              key={item.seat}
-              name={ticket.name}
-              code={item.code}
-              time={ticket.startTime}
-              date={ticket.date}
-              cinema={ticket.cinema}
-              order={ticket.order}
-              seat={item.seat}
-              technology={ticket.technology}
-            />
-          }
-          keyExtractor={(_, index) => index.toString()}
-          horizontal
-          decelerationRate={0.99}
-          showsHorizontalScrollIndicator={false}
+    <View style={[{...styles.wrapper},{width:width}]}>
+      <View style={[{...styles.container},{width:iWidth}]}>
+        <TicketInformation
+          name={name}
+          time={time}
+          date={date}
+          cinema={cinema}
+          order={order}
+          technology={technology}
+          seat={seat}
         />
+        <ImageSvg iWidth={iWidth} iHeight={20} />
+        <TicketCode code={code} />
       </View>
-      <ClientInformation client={ticket.client} price={ticket.price}/>
     </View>
   )
 }
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
   wrapper: {
-    flex: 1,
+    flex:1,
+    alignItems:'center',
+    justifyContent:'center'
   },
-  buttonsContainer: {
-    flexDirection: 'row',
-    paddingHorizontal: 20,
-    alignItems: 'center',
-    height: 120
+  container: {
+    elevation: 25,
+    borderRadius: 1
   },
-  ticketContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
 })
 
 /*

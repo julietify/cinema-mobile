@@ -2,9 +2,10 @@ import React, { memo } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
 import Barcode from "react-native-barcode-builder";
+import { palette } from '../../../theme/palette'
 
 interface ITicketCode {
-  code:String
+  code: string
 }
 
 export const TicketCode = memo<ITicketCode>(({
@@ -12,7 +13,7 @@ export const TicketCode = memo<ITicketCode>(({
 }) => {
   return(
     <View style={styles.container}>
-      <Barcode value={`${code}`} format='CODE128' height={70} width={2.6} />
+      <Barcode value={`${code}`} format='CODE128' height={70} width={2.6} lineColor={`${'black'}`}/>
     </View>
   )
 })

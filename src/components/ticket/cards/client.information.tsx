@@ -2,10 +2,12 @@ import React, { FC } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
 import QRCode from 'react-native-qrcode-svg';
+import { Title1 } from '../../ui/typography/title'
+import { palette } from '../../../theme/palette'
 
 interface IClientInformation {
-  client: String
-  price: String
+  client: string
+  price: string
 }
 
 export const ClientInformation: FC<IClientInformation> = ({
@@ -13,18 +15,18 @@ client,
 price
 }) => { 
   return(
-    <View style={styles.infoContainer}>
-        <View style={{justifyContent:'space-between'}}>
-          <View style={{marginBottom:20}}>
-            <Text style={styles.title}>Name</Text>
+    <View style={styles.wrapper}>
+        <View style={styles.container}>
+          <View style={styles.margin}>
+            <Title1 style={styles.title}>Name</Title1>
             <Text style={styles.text}>{client}</Text>
           </View>
           <View>
-            <Text style={styles.title}>Price</Text>
+            <Title1 style={styles.title}>Price</Title1>
             <Text style={styles.text}>{price}</Text>
           </View>
         </View>
-        <View style={{justifyContent:'center'}}>
+        <View style={styles.codeContainer}>
           <QRCode value="Hello" size={60}/>
         </View>
       </View>
@@ -32,21 +34,27 @@ price
 }
 
 const styles = StyleSheet.create({
-  infoContainer: {
+  wrapper: {
     paddingHorizontal:40,
     paddingVertical:20,
     flexDirection:'row',
     justifyContent:'space-between'
   },
+  container: {
+    justifyContent:'space-between'
+  },
+  codeContainer: {
+    justifyContent:'center'
+  },
   text: {
-    color: '#1E1851',
     fontWeight: '700',
     fontSize: 16,
     marginTop: 5,
   },
   title: {
-    fontSize: 13,
-    fontWeight: '700',
-    color: 'rgba(0, 0, 0, .3)',
-  }
+    color:'rgba(0,0,0,0.3)'
+  },
+  margin:{
+    marginBottom:20
+  },
 })

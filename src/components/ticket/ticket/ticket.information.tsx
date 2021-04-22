@@ -1,14 +1,17 @@
 import React, { memo } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
+import { Title1 } from '../../ui/typography/title'
+import { palette } from '../../../theme/palette'
+
 interface ITicketInfromation {
-  time: String
-  date: String
-  order: String
-  cinema: String
-  technology: String
-  seat: String
-  name: String
+  time: string
+  date: string
+  order: string
+  cinema: string
+  technology: string
+  seat: string
+  name: string
 }
 
 export const TicketInformation = memo<ITicketInfromation>(({
@@ -23,35 +26,35 @@ export const TicketInformation = memo<ITicketInfromation>(({
   return (
     <View style={styles.wrapper}>
       <View style={styles.nameContainer}>
-        <Text style={styles.textName}>Movie : {name}</Text>
+        <Text style={styles.textName}>{name}</Text>
       </View>
       <View style={styles.container}>
         <View style={styles.firstContainer}>
-          <Text style={styles.title}>Date</Text>
+          <Title1 style={styles.title}>Date</Title1>
           <Text style={styles.text}>{date}</Text>
         </View>
         <View>
-          <Text style={styles.title}>Time</Text>
+          <Title1 style={styles.title}>Time</Title1>
           <Text style={styles.text}>{time}</Text>
         </View>
       </View>
       <View style={styles.container}>
         <View style={styles.firstContainer}>
-          <Text style={styles.title}>Cinema</Text>
+          <Title1 style={styles.title}>Cinema</Title1>
           <Text style={styles.text}>{cinema}</Text>
         </View>
         <View>
-          <Text style={styles.title}>Seat</Text>
+          <Title1 style={styles.title}>Seat</Title1>
           <Text style={styles.text}>{seat}</Text>
         </View>
       </View>
       <View style={styles.container}>
         <View style={styles.firstContainer}>
-          <Text style={styles.title}>Technology</Text>
+          <Title1 style={styles.title}>Technology</Title1>
           <Text style={styles.text}>{technology}</Text>
         </View>
         <View>
-          <Text style={styles.title}>Order</Text>
+          <Title1 style={styles.title}>Order</Title1>
           <Text style={styles.text}>{order}</Text>
         </View>
       </View>
@@ -71,7 +74,7 @@ const styles = StyleSheet.create({
     paddingBottom:10,
   },
   textName: {
-    color:'#1E1851',
+    color: palette.theme.dark,
     fontWeight:'700',
     fontSize:17,
   },
@@ -84,14 +87,12 @@ const styles = StyleSheet.create({
     width: '65%'
   },
   text: {
-    color: '#1E1851',
+    color: palette.theme.dark,
     fontWeight: '700',
     fontSize: 16,
     marginTop: 8
   },
   title: {
-    fontSize: 13,
-    fontWeight: '700',
     color: 'rgba(0, 0, 0, .3)'
   }
 })
