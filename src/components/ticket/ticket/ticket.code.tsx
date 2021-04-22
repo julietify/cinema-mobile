@@ -1,28 +1,21 @@
 import React, { memo } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { useTheme } from '@react-navigation/native'
+import Barcode from "react-native-barcode-builder"
 
-import Barcode from "react-native-barcode-builder";
-import { palette } from '../../../theme/palette'
-
-interface ITicketCode {
-  code: string
-}
-
-export const TicketCode = memo<ITicketCode>(({
+export const TicketCode = memo<{ code: string }>(({
   code
 }) => {
-  return(
-    <View style={styles.container}>
-      <Barcode value={`${code}`} format='CODE128' height={70} width={2.6} lineColor={`${'black'}`}/>
-    </View>
+
+  const { colors } = useTheme()
+
+  return (
+    <Barcode 
+      background={colors.card} 
+      value={code} 
+      format='CODE128'
+      height={50} 
+      width={2} 
+      lineColor={colors.text}
+    />
   )
-})
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    paddingVertical:15,
-    backgroundColor: 'white',
-    borderBottomLeftRadius:20,
-    borderBottomRightRadius:20,
-  }
 })
