@@ -1,33 +1,34 @@
 import React, { FC } from 'react'
-import { View, Text } from 'react-native'
-
-import { ButtonIcon } from "../../components/ui/buttons/button.icon"
+import { View, StyleSheet } from 'react-native'
 
 import type { TrailersRouteProp } from '../../navigation/stacks/film.stack'
 import { useRedirect } from "../../hooks/useRedirect"
+import { Title } from '../../components/ui/typography/title'
+import { useTheme } from '@react-navigation/native'
 
 interface ITrailersProps {
-  route:TrailersRouteProp
+  route: TrailersRouteProp
 }
 
-export const Trailers:FC<ITrailersProps> = ({
+export const Trailers: FC<ITrailersProps> = ({
  route
 }) => {
-  const { filmId } = route.params
-  const trailerId = 'hello'
 
+  const { filmId } = route.params
+  const { colors } = useTheme()
   const { redirectoToTrailerScreen } = useRedirect()
   
   return (
-    <View 
-      style={{flex:1,alignItems:'center',justifyContent:'center'}}
-    >
-      <Text>{filmId}</Text>
-      <ButtonIcon 
-        iconName='play'
-        text='Watch trailer'
-        onPress={() => redirectoToTrailerScreen(trailerId)}
-      />
+    <View style={styles.container}>
+      <View style={{ marginVertical: 75, marginHorizontal: 20 }}>
+        <Title color={colors.text}>Trailers</Title>
+      </View>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
+})
