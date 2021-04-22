@@ -1,5 +1,6 @@
 import React, { FC } from "react"
 import {View, FlatList, StyleSheet } from "react-native"
+import { Heading } from "../../components/common/heading"
 
 import { TicketCard } from "../../components/ticket/cards/ticket.card" 
 import { useRedirect } from "../../hooks/useRedirect"
@@ -15,6 +16,7 @@ export const Tickets: FC = () => {
 
   return (
     <View style={styles.wrapper}>
+      <Heading value='Tickets' />
       <FlatList 
         data={tickets}
         renderItem={({ item }) => 
