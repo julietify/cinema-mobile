@@ -31,6 +31,7 @@ export const TicketContainer: FC<ITicketContainerProps> = ({
 
   const { width } = useWindowDimensions()
   const iWidth = width * .75
+  const iHeight = iWidth / 14.5
 
   return (
     <View style={[{...styles.wrapper},{width:width}]}>
@@ -44,7 +45,7 @@ export const TicketContainer: FC<ITicketContainerProps> = ({
           technology={technology}
           seat={seat}
         />
-        <ImageSvg iWidth={iWidth} iHeight={20} />
+        <ImageSvg iWidth={iWidth} iHeight={iHeight} iBColor={'white'} iColor={'#C1C2C3'}/>
         <TicketCode code={code} />
       </View>
     </View>
