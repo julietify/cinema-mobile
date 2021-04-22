@@ -35,7 +35,7 @@ export const Film: FC<IFilmProps> = ({
   route
 }) => {
 
-  const { redirectoToTrailerScreen } = useRedirect()
+  const { redirectoToTrailersScreen } = useRedirect()
 
   const { filmId } = route.params
 
@@ -88,7 +88,7 @@ export const Film: FC<IFilmProps> = ({
             <ButtonIcon
               iconName='play'
               text='Watch trailer'
-              onPress={() => redirectoToTrailerScreen(filmId)}
+              onPress={() => redirectoToTrailersScreen(filmId)}
               {...trailerButton}
             />
             <Info time={filmOmdb.Runtime} genre={filmOmdb.Genre} />
