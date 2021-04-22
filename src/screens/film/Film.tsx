@@ -25,6 +25,8 @@ import { Loader } from '../../components/common/loader'
 
 import { filmStyles } from "../../components/film/styles/film.styles"
 
+import { useRedirect } from "../../hooks/useRedirect"
+
 interface IFilmProps {
   route: FilmRouteProp
 }
@@ -32,6 +34,8 @@ interface IFilmProps {
 export const Film: FC<IFilmProps> = ({
   route
 }) => {
+
+  const { redirectoToTrailerScreen } = useRedirect()
 
   const { filmId } = route.params
 
@@ -84,7 +88,7 @@ export const Film: FC<IFilmProps> = ({
             <ButtonIcon
               iconName='play'
               text='Watch trailer'
-              onPress={() => { }}
+              onPress={() => redirectoToTrailerScreen(filmId)}
               {...trailerButton}
             />
             <Info time={filmOmdb.Runtime} genre={filmOmdb.Genre} />
