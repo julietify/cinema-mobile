@@ -8,5 +8,18 @@ export const screenConfig = {
   film: {
     header: () => null,
     CardStyleInterpolators: CardStyleInterpolators.forNoAnimation
+  },
+  trailers: {
+    header: () => null,
+    CardStyleInterpolators: CardStyleInterpolators.forHorizontalIOS
+  },
+  trailer: {
+    header: () => null,
+    CardStyleInterpolators: CardStyleInterpolators.forHorizontalIOS
+  },
+  ticket: {
+    header: () => null,
+    CardStyleInterpolators: CardStyleInterpolators.forNoAnimation
   }
+
 }

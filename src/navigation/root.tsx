@@ -6,6 +6,7 @@ import { BottomTabBar } from './bars/bottom.bar'
 import { Auth } from '../screens/auth/Auth'
 import { ProfileStackScreen } from './stacks/profile.stack'
 import { FilmStackScreen } from './stacks/film.stack'
+import { TicketStackScreen } from'./stacks/ticket.stack'
 
 import { login } from '../redux/auth/thunks'
 import { useAppDispatch, useAppSelector } from '../hooks/useRedux'
