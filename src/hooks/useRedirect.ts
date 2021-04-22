@@ -10,8 +10,8 @@ export const useRedirect = () => {
       params: { filmId }
     })
   }, [])
-  const redirectoToTrailerScreen = useCallback(filmId => {
-    navigation.navigate('Trailer', { filmId })
+  const redirectoToTrailersScreen = useCallback(filmId => {
+    navigation.navigate('Trailers', { filmId })
   }, [])
   const redirectoToTicketScreen = useCallback(ticketId => {
     navigation.navigate('Ticket', { ticketId })
@@ -20,6 +20,6 @@ export const useRedirect = () => {
   return {
     redirectoToFilmScreen,
     redirectoToTicketScreen,
-    redirectoToTrailerScreen
+    redirectoToTrailersScreen
   }
 }

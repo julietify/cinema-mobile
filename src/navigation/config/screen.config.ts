@@ -9,7 +9,7 @@ export const screenConfig = {
     header: () => null,
     CardStyleInterpolators: CardStyleInterpolators.forNoAnimation
   },
-  trailer: {
+  trailers: {
     header: () => null,
     CardStyleInterpolators: CardStyleInterpolators.forNoAnimation
   },
