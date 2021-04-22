@@ -11,7 +11,11 @@ export const screenConfig = {
   },
   trailers: {
     header: () => null,
-    CardStyleInterpolators: CardStyleInterpolators.forNoAnimation
+    CardStyleInterpolators: CardStyleInterpolators.forHorizontalIOS
+  },
+  trailer: {
+    header: () => null,
+    CardStyleInterpolators: CardStyleInterpolators.forHorizontalIOS
   },
   ticket: {
     header: () => null,
