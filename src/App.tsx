@@ -13,7 +13,7 @@ export const App = () => {
 
   return (
     <>
-    <StatusBar translucent backgroundColor="transparent" />
+    <StatusBar translucent backgroundColor='transparent' />
     <NavigationContainer theme={scheme === 'dark' ? darkTheme : lightTheme}>
       <Provider store={store}>
         <RootStackScreen />

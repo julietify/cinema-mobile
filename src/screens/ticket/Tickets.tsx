@@ -22,7 +22,6 @@ export const Tickets: FC = () => {
             name={item.name} 
             cinema={item.cinema} 
             tickets={item.tickets.length} 
-            price={item.price} 
             ticketId={item.order}
             onPress={redirectoToTicketScreen}
           />
