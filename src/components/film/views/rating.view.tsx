@@ -5,6 +5,7 @@ import { palette } from '../../../theme/palette'
 import { Title, Body1 } from "../../ui/typography/title"
 
 import { IOmdbRating } from '../../../interfaces/IOmdb'
+
 interface IFilmRating{
   imdbRating: string
   rating: Array<IOmdbRating>
