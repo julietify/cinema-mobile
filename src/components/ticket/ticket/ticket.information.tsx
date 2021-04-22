@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text } from 'react-native'
 
-import { palette } from '../../../theme/palette'
+import { typography } from '../styles/ticket.styles'
 
 interface ITicketInfromation {
   time: string
@@ -18,14 +18,14 @@ export const TicketInformation = memo<ITicketInfromation>(({ ...rest }) => {
     return (
       <View style={{ margin: 20, width: 75 }}>
         <View >
-          <Text style={styles.title}>{title[0].toUpperCase() + title.slice(1)}</Text>
+          <Text style={typography.title}>{title[0].toUpperCase() + title.slice(1)}</Text>
         </View>
         <View 
           style={{
             alignItems: 'flex-start', 
           }}
         >
-          <Text style={styles.text}>{value}</Text>
+          <Text style={typography.text}>{value}</Text>
         </View>
       </View>
     )
@@ -40,18 +40,4 @@ export const TicketInformation = memo<ITicketInfromation>(({ ...rest }) => {
         }
     </View>
   )
-})
-
-const styles = StyleSheet.create({
-  text: {
-    color: palette.theme.dark,
-    fontWeight: '700',
-    fontSize: 12,
-    marginTop: 10
-  },
-  title: {
-    color: 'rgba(0, 0, 0, .3)',
-    fontWeight: 'bold',
-    fontSize: 12
-  }
 })
