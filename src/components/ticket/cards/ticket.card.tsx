@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
 import { Text, View, StyleSheet, useWindowDimensions, TouchableOpacity, Image } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import { Title1 } from '../../ui/typography/title'
 
@@ -7,7 +8,6 @@ interface ITicketCard {
   name: string
   cinema: string
   ticketId: string
-  price: string
   tickets: number
   onPress?: (ticketId: string) => void
 }
@@ -15,7 +15,6 @@ interface ITicketCard {
 export const TicketCard = memo<ITicketCard>(({
   name,
   cinema,
-  price,
   tickets,
   ticketId,
   onPress
@@ -61,7 +60,7 @@ export const TicketCard = memo<ITicketCard>(({
           </Text>
         </View>
         <View style={styles.priceContainer}>
-          <Title1>{price}</Title1>
+          <Icon name='chevron-right' size={25} />
         </View>
       </View>
       
