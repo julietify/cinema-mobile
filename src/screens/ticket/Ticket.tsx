@@ -2,7 +2,7 @@ import React, { FC, useCallback, useState } from 'react'
 import { View, StyleSheet, FlatList } from 'react-native'
 
 import { TicketItem } from '../../components/ticket/ticket/ticket.item'
-import { ClientInformation } from '../../components/ticket/cards/client.information'
+import { ClientInformation } from '../../components/ticket/ticket/client.information'
 
 import { Title1 } from '../../components/ui/typography/title'
 
