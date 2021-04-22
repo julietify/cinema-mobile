@@ -5,6 +5,7 @@ import { RouteProp } from '@react-navigation/native'
 import { Film } from '../../screens/film/Film'
 import { Trailers } from '../../screens/film/Trailers'
 import { Trailer } from '../../screens/film/Trailer'
+import { screenConfig } from '../config/screen.config'
 
 type FilmStackParams = {
   RootFilm: {
@@ -27,7 +28,7 @@ export type TrailerRouteProp = RouteProp<FilmStackParams, 'Trailer'>
 export const FilmStackScreen = () => (
   <FilmStack.Navigator initialRouteName='RootFilm' headerMode='none'>
     <FilmStack.Screen name="RootFilm" component={Film} />
-    <FilmStack.Screen name="Trailers" component={Trailers}/>
-    <FilmStack.Screen name="Trailer" component={Trailer}/>
+    <FilmStack.Screen name="Trailers" component={Trailers} />
+    <FilmStack.Screen name="Trailer" component={Trailer} />
   </FilmStack.Navigator>
 )

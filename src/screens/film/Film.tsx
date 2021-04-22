@@ -35,13 +35,13 @@ export const Film: FC<IFilmProps> = ({
   route
 }) => {
 
-  const { redirectoToTrailersScreen } = useRedirect()
-
   const { filmId } = route.params
 
   const [filmOmdb, setFilmOmdb] = useState<IOmdbResponse>({} as IOmdbResponse)
   const [loading, setLoading] = useState(true)
   const [film] = useState(() => films.filter(film => film.id === filmId)[0])
+
+  const { redirectoToTrailersScreen } = useRedirect()
 
   useEffect(() => {
     let isActive = true
