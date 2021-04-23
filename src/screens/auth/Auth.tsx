@@ -1,33 +1,24 @@
 import React, { FC } from 'react'
-import { Button, Text, View } from 'react-native'
-import { useNavigation, useTheme } from '@react-navigation/native'
+import { StyleSheet, View } from 'react-native'
 
 import { ButtonIcon } from '../../components/ui/buttons/button.icon'
 
 import { useAppDispatch } from '../../hooks/useRedux'
 import { signInGoolge } from '../../redux/auth/thunks'
 import { palette } from '../../theme/palette'
+import { Heading } from '../../components/common/heading'
 
 export const Auth: FC = () => {
 
   const dispatch = useAppDispatch()
-  const { colors } = useTheme()
-  const navigation = useNavigation()
-
+  
   return (
-    <View style={{ flex: 1 }}>
-      <View style={{ flex: 1, justifyContent: 'center' }}>
-        <Text 
-          style={{ 
-            fontSize: 36,
-            margin: 30,
-            color: colors.text
-          }}
-        >
-          Welcome
-        </Text>
+    <> 
+    <View style={styles.container}>
+      <View style={styles.headingContainer}>
+        <Heading value='Welcome' />
       </View>
-      <View style={{ flex: .8, alignItems: 'center', justifyContent: 'space-around' }}>
+      <View style={styles.btnContainer}>
         <ButtonIcon 
           onPress={() => dispatch(signInGoolge())} 
           iconName='google'
@@ -41,13 +32,22 @@ export const Auth: FC = () => {
           bgColor={palette.main.darkblue}
         />
       </View>
-      <View style={{ flex: 1, justifyContent: 'flex-end' }}>
-        <Button 
-          title='Go as guest' 
-          onPress={() => navigation.navigate('root')} 
-          color={colors.background} 
-        />
-      </View>
     </View>
+    </>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  headingContainer: {
+    justifyContent: 'center',
+    flex: .6
+  },
+  btnContainer: {
+    flex: .4,
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
+})
