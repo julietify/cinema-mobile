@@ -48,7 +48,8 @@ export const Trailers: FC<ITrailersProps> = ({
         renderItem={({ item }) =>
           <TrailerCard
             name={item.name}
-            picture={item.key}
+            trailerId={item.key}
+            onPress={redirectoToTrailerScreen}
           />
         }
         keyExtractor={(_, index) => index.toString()}
