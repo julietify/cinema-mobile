@@ -4,15 +4,18 @@ import { useTheme } from '@react-navigation/native'
 
 import { Title } from '../../ui/typography/title'
 import { palette } from '../../../theme/palette'
+import { ytimg } from '../../../utils/constants'
 
 interface ITrailerCard {
-  picture: string
   name: string
+  trailerId: string
+  onPress?: (id: string) => void
 }
 
 export const TrailerCard: FC<ITrailerCard> = ({
-  picture,
-  name
+  trailerId,
+  name,
+  onPress
 }) => {
 
   const { colors } = useTheme()
@@ -24,11 +27,11 @@ export const TrailerCard: FC<ITrailerCard> = ({
   return (
     <View style={styles.wrapper}>
       <View style={{ ...styles.container, width: iWidth }}>
-        <TouchableOpacity activeOpacity={.9}>
+        <TouchableOpacity activeOpacity={.9} onPress={() => onPress(trailerId)}>
           <ImageBackground
             imageStyle={{ borderRadius: 10 }}
             style={{ ...styles.image, height: iHeight }}
-            source={{ uri: `https://img.youtube.com/vi/${picture}/maxresdefault.jpg` }}
+            source={{ uri: `${ytimg}/${trailerId}/maxresdefault.jpg` }}
           >
           </ImageBackground>
         </TouchableOpacity>
