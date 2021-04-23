@@ -41,7 +41,7 @@ export const Film: FC<IFilmProps> = ({
   const [loading, setLoading] = useState(true)
   const [film] = useState(() => films.filter(film => film.id === filmId)[0])
 
-  const { redirectoToTrailersScreen } = useRedirect()
+  const { redirectToTrailersScreen, redirectToBookingScreen } = useRedirect()
 
   useEffect(() => {
     let isActive = true
@@ -88,7 +88,7 @@ export const Film: FC<IFilmProps> = ({
             <ButtonIcon
               iconName='play'
               text='Watch trailer'
-              onPress={() => redirectoToTrailersScreen(filmId)}
+              onPress={() => redirectToTrailersScreen(filmId)}
               {...trailerButton}
             />
             <Info time={filmOmdb.Runtime} genre={filmOmdb.Genre} />
@@ -107,7 +107,7 @@ export const Film: FC<IFilmProps> = ({
           <ButtonIcon
             text='Book now'
             iconName='ticket-confirmation'
-            onPress={() => { }}
+            onPress={() => redirectToBookingScreen(filmId)}
             {...bookButton}
           />
         </View>

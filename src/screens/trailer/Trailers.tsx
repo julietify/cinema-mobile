@@ -23,7 +23,7 @@ export const Trailers: FC<ITrailersProps> = ({
   const [trailers, setTrailers] = useState([])
 
   const { colors } = useTheme()
-  const { redirectoToTrailerScreen } = useRedirect()
+  const { redirectToTrailerScreen } = useRedirect()
 
   useEffect(() => {
     const getTrailers = async () => {
@@ -49,7 +49,7 @@ export const Trailers: FC<ITrailersProps> = ({
           <TrailerCard
             name={item.name}
             trailerId={item.key}
-            onPress={redirectoToTrailerScreen}
+            onPress={redirectToTrailerScreen}
           />
         }
         keyExtractor={(_, index) => index.toString()}

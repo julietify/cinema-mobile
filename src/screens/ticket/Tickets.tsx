@@ -9,7 +9,7 @@ import { tickets } from '../../utils/tickets'
 
 export const Tickets: FC = () => {
 
-  const { redirectoToTicketScreen } = useRedirect()
+  const { redirectToTicketScreen } = useRedirect()
 
   //const [tickets, setTickets] = useState([])
   //if(!tickets.length) return <TicketsError />
@@ -25,7 +25,7 @@ export const Tickets: FC = () => {
             cinema={item.cinema} 
             tickets={item.tickets.length} 
             ticketId={item.order}
-            onPress={redirectoToTicketScreen}
+            onPress={redirectToTicketScreen}
           />
         }
         keyExtractor={(_, index) => index.toString()}

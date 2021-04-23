@@ -9,7 +9,7 @@ import { films } from "../utils/films"
 
 export const Home: FC = () => {  
 
-  const { redirectoToFilmScreen } = useRedirect()
+  const { redirectToFilmScreen } = useRedirect()
 
   return (
     <View style={{ backgroundColor: '', flex: 1, alignItems: 'center' }}>
@@ -18,7 +18,7 @@ export const Home: FC = () => {
         data={films}
         renderItem={({ item }) => 
           <FilmCard 
-            onPress={redirectoToFilmScreen} 
+            onPress={redirectToFilmScreen} 
             name={item.name} 
             id={item.id} 
             picture={item.poster}
