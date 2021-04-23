@@ -1,40 +1,39 @@
-import React, { FC, useCallback, useState } from 'react'
-import { View, StyleSheet } from 'react-native'
+import React, { FC, useState } from 'react'
+import { TouchableOpacity } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import { FilterItem } from '../../common/filter.item'
+import { Heading } from '../../common/heading'
 
 export const FilterContainer: FC = () => {
-  const [selector, setSelector] = useState('all')
+  const [selector, setSelector] = useState(true)
 
   return (
-    <View style={styles.container}>
-      <FilterItem 
-        isSelected={selector === 'all'}
-        onPress={useCallback(() => { 
-          setSelector('all') 
-        }, [])
-      }
-      >
-        Premiers
-      </FilterItem>
-      <FilterItem 
-        isSelected={selector === 'soon'}
-        onPress={useCallback(() => { 
-          setSelector('soon') 
-        }, [])
-      }
-      >
-        Soon
-      </FilterItem>
-    </View>
+    <>
+      <Heading value={selector ? 'Premiers' : 'Soon'}>
+        <TouchableOpacity onPress={() => setSelector(prev => !prev)}>
+          <Icon name={`chevron-right`} size={35} />
+        </TouchableOpacity>
+      </Heading>
+    </>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    flexDirection: 'row',
-    marginTop: 10,
-    paddingHorizontal: 20
-  }
-})
+   // <View style={styles.container}>
+    //   <FilterItem 
+    //     isSelected={selector === 'all'}
+    //     onPress={useCallback(() => { 
+    //       setSelector('all') 
+    //     }, [])
+    //   }
+    //   >
+    //     Premiers
+    //   </FilterItem>
+    //   <FilterItem 
+    //     isSelected={selector === 'soon'}
+    //     onPress={useCallback(() => { 
+    //       setSelector('soon') 
+    //     }, [])
+    //   }
+    //   >
+    //     Soon
+    //   </FilterItem>
+    // </View>
