@@ -3,8 +3,8 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { RouteProp } from '@react-navigation/native'
 
 import { Film } from '../../screens/film/Film'
-import { Trailers } from '../../screens/film/Trailers'
-import { Trailer } from '../../screens/film/Trailer'
+import { Trailers } from '../../screens/trailer/Trailers'
+import { Trailer } from '../../screens/trailer/Trailer'
 import { screenConfig } from '../config/screen.config'
 
 type FilmStackParams = {
