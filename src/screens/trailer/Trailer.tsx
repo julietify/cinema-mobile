@@ -1,10 +1,9 @@
 import React, { FC } from 'react'
-import { View, Text } from 'react-native'
-
-import { WebView } from 'react-native-webview';
+import { View, StatusBar } from 'react-native'
+import { WebView } from 'react-native-webview'
 
 import type { TrailerRouteProp } from '../../navigation/stacks/film.stack'
-
+import { ytvideo } from '../../utils/constants'
 interface ITrailerProps {
   route: TrailerRouteProp
 }
@@ -15,17 +14,19 @@ export const Trailer: FC<ITrailerProps> = ({
 
   const { trailerId } = route.params
 
+  const path = 'https://'
+
   return (
-    <View style={{flex:1}}>
-      <Text>{trailerId}</Text>
+    <>
+    <StatusBar hidden />
+    <View style={{ flex: 1 }}>
+      <WebView
+        javaScriptEnabled={true}
+        domStorageEnabled={true}
+        source={{ uri: `${ytvideo}/${trailerId}` }}
+      />
     </View>
+    </>
   )
 }
 
-/*
-        <WebView
-        javaScriptEnabled={true}
-        domStorageEnabled={true}
-          source={{ uri: 'https://www.youtube.com/embed/2EcwnGFi4AQ' }}
-        />
-*/
