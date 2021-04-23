@@ -4,26 +4,35 @@ import { useNavigation } from "@react-navigation/core"
 export const useRedirect = () => {
   const navigation = useNavigation()
 
-  const redirectoToFilmScreen = useCallback(filmId => {
+  const redirectToFilmScreen = useCallback(filmId => {
     navigation.navigate('RootFilm', {
       screen: 'RootFilm',
       params: { filmId }
     })
   }, [])
-  const redirectoToTrailersScreen = useCallback(filmId => {
+
+  const redirectToTrailersScreen = useCallback(filmId => {
     navigation.navigate('Trailers', { filmId })
   }, [])
-  const redirectoToTrailerScreen = useCallback(trailerId => {
+
+  const redirectToTrailerScreen = useCallback(trailerId => {
     navigation.navigate('Trailer', { trailerId })
   }, [])
-  const redirectoToTicketScreen = useCallback(ticketId => {
+
+  const redirectToTicketScreen = useCallback(ticketId => {
     navigation.navigate('Ticket', { ticketId })
   }, [])
 
+  const redirectToBookingScreen = useCallback(filmId => {
+    navigation.navigate('Booking', { filmId })
+  }, [])
+
+
   return {
-    redirectoToFilmScreen,
-    redirectoToTicketScreen,
-    redirectoToTrailersScreen,
-    redirectoToTrailerScreen
+    redirectToFilmScreen,
+    redirectToTicketScreen,
+    redirectToTrailersScreen,
+    redirectToBookingScreen,
+    redirectToTrailerScreen
   }
 }
