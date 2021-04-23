@@ -11,7 +11,7 @@ export const FilterContainer: FC = () => {
     <>
       <Heading value={selector ? 'Premiers' : 'Soon'}>
         <TouchableOpacity onPress={() => setSelector(prev => !prev)}>
-          <Icon name={`chevron-right`} size={35} />
+          <Icon name={`chevron-right`} size={30} />
         </TouchableOpacity>
       </Heading>
     </>
