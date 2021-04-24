@@ -3,6 +3,7 @@ import { Pressable, Text, View, StyleSheet, useWindowDimensions, TouchableOpacit
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import { IButton } from '../../../interfaces/IButton'
+import { palette } from '../../../theme/palette'
 
 interface IButtonIcon extends IButton {
   iconName: string
@@ -29,20 +30,17 @@ export const ButtonIcon: FC<IButtonIcon> = ({
   return (
     <TouchableOpacity 
       onPress={onPress} 
-      activeOpacity={.9}
-    >
-      <View 
-        style={{ 
-          ...styles.container, 
+      activeOpacity={.8}
+      style={{
+        ...styles.container, 
           width: w || defaultWidth, 
-          backgroundColor: bgColor,
+          backgroundColor: bgColor || palette.main.lightblue,
           borderRadius: brRadius || 10,
           padding: p || 17
-        }}
-      >
-        <Icon name={iconName} size={25} color={iconColor || '#fff'} />
-        { text && <Text style={styles.text}>{text}</Text> }
-      </View>
+      }}
+    >
+      <Icon name={iconName} size={25} color={iconColor || '#fff'} />
+      { text && <Text style={styles.text}>{text}</Text> }
     </TouchableOpacity>
   )
 }
@@ -51,11 +49,9 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'space-between',
     flexDirection: 'row',
-    // padding: 10,
-    marginTop: 10,
-    marginBottom: 10,
-    // borderRadius: 10,
-    elevation: 15
+    marginVertical: 20,
+    elevation: 5,
+    padding: 20
   },
   text: {
     fontSize: 16,
