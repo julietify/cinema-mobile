@@ -30,7 +30,7 @@ export const TicketItem = memo<ITicketContainerProps>(({
   const { colors } = useTheme()
 
   const iWidth = width * .7
-  const iHeight = iWidth * 1.5
+  const iHeight = iWidth * 1.4
 
   return (
     <View style={{...styles.wrapper, width}}>
