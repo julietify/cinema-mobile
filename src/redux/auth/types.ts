@@ -1,6 +1,7 @@
 interface UserState {
   name: string
   picture: string
+  email: string
 }
 
 interface AuthState {
@@ -14,6 +15,7 @@ export const initialState: AuthState = {
   checking: true,
   user: {
     name: '',
-    picture: ''
+    picture: '',
+    email: ''
   }
 }

@@ -15,9 +15,9 @@ export const login = createAsyncThunk('auth/login', async () => {
   
   if(!token) throw 'no token'
   
-  const { name, picture } = await auth0.auth.userInfo({ token })
+  const { name, picture, email } = await auth0.auth.userInfo({ token })
 
-  return { name, picture }
+  return { name, picture, email }
 })
 
 export const logout = createAsyncThunk('auth/logout', async () => {

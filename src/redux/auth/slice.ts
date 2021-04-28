@@ -10,7 +10,7 @@ const authSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(login.fulfilled, (state, action) => {
       state.checking = false
-      state.isAuthenticated = true,
+      state.isAuthenticated = true
       state.user = action.payload
     }),
     builder.addCase(login.rejected, state => {
