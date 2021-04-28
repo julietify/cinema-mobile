@@ -31,32 +31,29 @@ export const RootStackScreen: FC = () => {
   return (
     <Stack.Navigator screenOptions={rootHeaderConfig}>
       {
-        !isAuthenticated && (
+        isAuthenticated 
+        ? (
+          <>
           <Stack.Screen 
-            name='SignIn'
-            component={Auth}
-            options={authHeaderConfig}
+            name='root'
+            component={BottomTabBar}
           />
-        )
-      }
-      {
-        isAuthenticated && (
+          <Stack.Screen 
+            name='RootFilm'
+            component={FilmStackScreen}
+            options={screenConfig.film}
+          />
           <Stack.Screen 
             name='RootProfile'
             component={ProfileStackScreen}
             options={screenConfig.profile}
           />
+        </>
+        )
+        : (
+          <Stack.Screen name='SignIn' component={Auth} options={authHeaderConfig} />
         )
       }
-      <Stack.Screen 
-        name='root'
-        component={BottomTabBar}
-      />
-      <Stack.Screen 
-        name='RootFilm'
-        component={FilmStackScreen}
-        options={screenConfig.film}
-      />
     </Stack.Navigator>
   )
 }
