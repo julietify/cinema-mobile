@@ -4,11 +4,13 @@ import { Image, TouchableOpacity } from 'react-native'
 interface IUserAvatar {
   picture: string
   onPress?: () => void
+  size?: number
 }
 
 export const UserAvatar = memo<IUserAvatar>(({
   picture,
-  onPress
+  onPress,
+  size
 }) => {
 
   return (
@@ -16,8 +18,8 @@ export const UserAvatar = memo<IUserAvatar>(({
       <Image 
         source={{ uri: picture }} 
         style={{
-          width: 30,
-          height: 30,
+          width: size || 30,
+          height: size || 30,
           borderRadius: 50
         }} 
       />
