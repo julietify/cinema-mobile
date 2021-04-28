@@ -39,14 +39,18 @@ export const RootStackScreen: FC = () => {
           />
         )
       }
+      {
+        isAuthenticated && (
+          <Stack.Screen 
+            name='RootProfile'
+            component={ProfileStackScreen}
+            options={screenConfig.profile}
+          />
+        )
+      }
       <Stack.Screen 
         name='root'
         component={BottomTabBar}
-      />
-      <Stack.Screen 
-        name='RootProfile'
-        component={ProfileStackScreen}
-        options={screenConfig.profile}
       />
       <Stack.Screen 
         name='RootFilm'
