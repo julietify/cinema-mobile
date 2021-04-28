@@ -10,7 +10,7 @@ type ProfileStackParams = {
 const ProfileStack = createStackNavigator<ProfileStackParams>()
 
 export const ProfileStackScreen = () => (
-  <ProfileStack.Navigator initialRouteName='ProfileRoot'>
+  <ProfileStack.Navigator initialRouteName='ProfileRoot' headerMode='none'>
     <ProfileStack.Screen name="ProfileRoot" component={Profile} />
   </ProfileStack.Navigator>
 )
