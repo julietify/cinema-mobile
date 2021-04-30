@@ -1,5 +1,5 @@
 import { useTheme } from '@react-navigation/native'
-import React, { FC } from 'react'
+import React, { memo } from 'react'
 import { View, StyleSheet, useWindowDimensions, TouchableOpacity, Image } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
@@ -12,7 +12,7 @@ interface ICard {
   onPress?: (filmId: string) => void
 }
 
-export const Card: FC<ICard> = ({
+export const Card = memo<ICard>(({
   id,
   poster,
   lines,
@@ -23,14 +23,14 @@ export const Card: FC<ICard> = ({
   const { colors } = useTheme()
 
   return (
-    <TouchableOpacity activeOpacity={.6} onPress={() => {onPress(id)}}>
+    <TouchableOpacity activeOpacity={.6} onPress={() => onPress(id)}>
       <View 
         style={{
           ...styles.container, 
           width: width - 50
         }}
       >
-      <Image 
+        <Image 
           source={{ uri: poster }}
           style={styles.image}
         />
@@ -52,7 +52,7 @@ export const Card: FC<ICard> = ({
       
     </TouchableOpacity>
   )
-}
+})
 
 const styles = StyleSheet.create({
   container: {
@@ -70,9 +70,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: '25%'
-  },
-  text: {
-    fontSize: 12
   },
   image: {
     width: 65,
