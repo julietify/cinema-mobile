@@ -1,8 +1,9 @@
 import React, { FC } from "react"
-import {View, FlatList, StyleSheet } from "react-native"
-import { Heading } from "../../components/common/heading"
+import { View, FlatList, StyleSheet } from "react-native"
 
-import { TicketCard } from "../../components/ticket/cards/ticket.card" 
+import { Heading } from "../../components/common/heading"
+import { Card } from "../../components/common/card" 
+
 import { useRedirect } from "../../hooks/useRedirect"
 
 import { tickets } from '../../utils/tickets'
@@ -20,11 +21,14 @@ export const Tickets: FC = () => {
       <FlatList 
         data={tickets}
         renderItem={({ item }) => 
-          <TicketCard 
-            name={item.name} 
-            cinema={item.cinema} 
-            tickets={item.tickets.length} 
-            ticketId={item.order}
+          <Card
+            lines={[
+              item.name,
+              item.cinema,
+              `${item.tickets.length} Tickets`
+            ]}
+            id={item.order}
+            poster={item.poster}
             onPress={redirectToTicketScreen}
           />
         }

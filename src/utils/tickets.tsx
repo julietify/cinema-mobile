@@ -10,6 +10,7 @@ export const tickets = [
     price:'64.74$',
     technology:'Cinetech+',
     age:'12+',
+    poster: 'https://karavan.ua/wp-content/uploads/2019/12/74682950_738377696672108_7910429065208903771_n.jpg'
   },
   {
     order: '21231243',
@@ -22,5 +23,6 @@ export const tickets = [
     price:'33.24$',
     technology:'Cinetech+',
     age:'12+',
+    poster: 'https://resizing.flixster.com/nyQEEUdokTK91hsyvk18xi7tGTE=/ems.ZW1zLXByZC1hc3NldHMvbW92aWVzL2RhMGM0OTk2LTRiZDktNDg1ZC05NzQ5LTUzMzQwZjA1OWFlMy53ZWJw'
   }
 ]
