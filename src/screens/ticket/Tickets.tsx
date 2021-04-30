@@ -22,7 +22,11 @@ export const Tickets: FC = () => {
         data={tickets}
         renderItem={({ item }) => 
           <Card
-            lines={[item.name,item.cinema,`${item.tickets.length} Tickets`]}
+            lines={[
+              item.name,
+              item.cinema,
+              `${item.tickets.length} Tickets`
+            ]}
             id={item.order}
             poster={item.poster}
             onPress={redirectToTicketScreen}

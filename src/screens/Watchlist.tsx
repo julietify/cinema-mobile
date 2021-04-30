@@ -21,7 +21,11 @@ export const Watchlist: FC = () => {
           <Card
             id={item.filmId}
             onPress={redirectToFilmScreen}
-            lines={[item.name,item.genre,item.date]}
+            lines={[
+              item.name,
+              item.genre,
+              item.date
+            ]}
             poster={item.poster}
           />
         }
@@ -33,7 +37,7 @@ export const Watchlist: FC = () => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex:1,
-    alignItems:'center'
+    flex: 1,
+    alignItems: 'center'
   } 
 })
