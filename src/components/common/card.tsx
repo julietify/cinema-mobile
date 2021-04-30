@@ -1,9 +1,9 @@
+import { useTheme } from '@react-navigation/native'
 import React, { FC } from 'react'
-import { Text, View, StyleSheet, useWindowDimensions, TouchableOpacity, Image } from 'react-native'
-
+import { View, StyleSheet, useWindowDimensions, TouchableOpacity, Image } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import { Title1 } from '../ui/typography/title'
+import { Body1, Body2, Title1 } from '../ui/typography/title'
 
 interface ICard {
   lines: Array<string>
@@ -20,6 +20,7 @@ export const Card: FC<ICard> = ({
 }) => {
 
   const { width } = useWindowDimensions()
+  const { colors } = useTheme()
 
   return (
     <TouchableOpacity activeOpacity={.6} onPress={() => {onPress(id)}}>
@@ -34,24 +35,15 @@ export const Card: FC<ICard> = ({
           style={styles.image}
         />
         <View style={styles.infoContainer}>
-          <Title1>{lines[0]}</Title1>
-          <Text 
-            style={{
-              ...styles.text, 
-              color: 'gray', 
-              fontWeight: 'bold' 
-            }}
-          >
+          <Title1>
+            {lines[0]}
+          </Title1>
+          <Body1 color='silver' margin='0'>
             {lines[1]}
-          </Text>
-          <Text 
-            style={{ 
-              ...styles.text, 
-              color: 'silver' 
-            }}
-          >
+          </Body1>
+          <Body2 color={colors.text}>
             {lines[2]}
-          </Text>
+          </Body2>
         </View>
         <View style={styles.priceContainer}>
           <Icon name='chevron-right' size={25} />
