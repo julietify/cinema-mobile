@@ -26,6 +26,9 @@ export const useRedirect = () => {
   const redirectToBookingScreen = useCallback(filmId => {
     navigation.navigate('Booking', { filmId })
   }, [])
+  const redirectToCheckoutScreen = useCallback(filmId => {
+    navigation.navigate('Checkout', { filmId })
+  }, [])
 
 
   return {
@@ -33,6 +36,7 @@ export const useRedirect = () => {
     redirectToTicketScreen,
     redirectToTrailersScreen,
     redirectToBookingScreen,
-    redirectToTrailerScreen
+    redirectToTrailerScreen,
+    redirectToCheckoutScreen
   }
 }
