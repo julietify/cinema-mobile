@@ -6,6 +6,7 @@ import { Film } from '../../screens/film/Film'
 import { Trailers } from '../../screens/trailer/Trailers'
 import { Trailer } from '../../screens/trailer/Trailer'
 import { Booking } from '../../screens/booking/Booking'
+import { Checkout } from '../../screens/checkout/checkout'
 
 type FilmStackParams = {
   RootFilm: {
@@ -19,6 +20,9 @@ type FilmStackParams = {
   },
   Booking: {
     filmId: string
+  },
+  Checkout: {
+    filmId: string
   }
 }
 
@@ -28,6 +32,7 @@ export type FilmRouteProp = RouteProp<FilmStackParams, 'RootFilm'>
 export type TrailersRouteProp = RouteProp<FilmStackParams, 'Trailers'>
 export type TrailerRouteProp = RouteProp<FilmStackParams, 'Trailer'>
 export type BookingRouteProp = RouteProp<FilmStackParams, 'Booking'>
+export type CheckoutRouteProp = RouteProp<FilmStackParams, 'Checkout'>
 
 export const FilmStackScreen = () => (
   <FilmStack.Navigator initialRouteName='RootFilm' headerMode='none'>
@@ -35,5 +40,6 @@ export const FilmStackScreen = () => (
     <FilmStack.Screen name="Booking" component={Booking} />
     <FilmStack.Screen name="Trailers" component={Trailers} />
     <FilmStack.Screen name="Trailer" component={Trailer} />
+    <FilmStack.Screen name="Checkout" component={Checkout} />
   </FilmStack.Navigator>
 )
